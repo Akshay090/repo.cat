@@ -1,0 +1,36 @@
+.root {
+  composes: black from '../../styles/colors.css';
+  width: 80vw;
+
+  margin: 0 auto;
+  font-family: Avenir, Helvetica Neue, Arial, sans-serif;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .root {
+    width: 100vw;
+  }
+}
+
+/* iPhone 6 */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+  .root {
+    width: 100vw;
+  }
+}
+
+/* iPhone 6+ */
+@media only screen
+  and (min-device-width: 414px)
+  and (max-device-width: 736px)
+  and (-webkit-min-device-pixel-ratio: 3)
+  and (orientation: portrait) {
+  .root {
+    width: 100vw;
+  }
+}
