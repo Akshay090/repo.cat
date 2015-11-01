@@ -16,6 +16,7 @@ import '../../styles/global.css';
 
 const mapStateToProps = (state, props) => {
   const dataType = props.location.pathname.slice(1);
+
   return {
     dataType,
     data: state.data[dataType].data,
@@ -122,17 +123,32 @@ export default class App extends Component {
   }
 
   render() {
+    if (this.props.data && this.props.data.some((obj) => obj.hasOwnProperty('ok') && !obj.ok)) {
+      return (
+        <div className={styles.root}>
+          <div className={styles.error}>
+            <img className={styles.errorGif} src="http://i.giphy.com/ZkyP7r8uDOEYU.gif"/>
+            <p>Github has a 60 requests per hour <a href="https://developer.github.com/v3/#rate-limiting">rate limit</a> for unauthenticated requests. We just reached that limit.</p>
+          </div>
+        </div>
+      );
+    } else if (!this.props.data) {
+      return (
+        <div className={styles.root}>
+          <img className={styles.loadingGif} src="http://i.giphy.com/G1agEvLPlFAY0.gif" />
+        </div>
+      );
+    }
+
     return (
       <div className={styles.root}>
         {this.props.langs ? this.renderFilter() : null}
-        {this.props.data ? this.renderItems() : null}
-        {this.props.data ? (
-           <Stats
-             dataType={this.props.dataType}
-             itemCount={this.props.data.length}
-             hnCount={this.props.hnCount}
-             />
-         ) : null}
+        {this.renderItems()}
+        <Stats
+          dataType={this.props.dataType}
+          itemCount={this.props.data.length}
+          hnCount={this.props.hnCount}
+        />
       </div>
     );
   }

@@ -16,6 +16,25 @@
   position: relative;
 }
 
+.error {
+  padding: 2rem;
+  text-align: center;
+}
+
+.errorGif {
+  display: block;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 16rem;
+}
+
+.loadingGif {
+  display: block;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 20rem;
+}
+
 .downArrow {
   position: relative;
   width: 0;

@@ -37,33 +37,30 @@ const getLangs = (data) => {
   return resultArr;
 };
 
+const typeMap = {
+  [HN_TOP_DATA]: 'top',
+  [HN_NEW_DATA]: 'new',
+  [HN_SHOW_DATA]: 'show',
+};
+
 const dataReducer = (state = initialDataState, action) => {
   switch (action.type) {
     case HN_TOP_DATA:
-      return {
-        ...state,
-        top: action.payload,
-        langs: {
-          ...state.langs,
-          top: getLangs(action.payload.data),
-        },
-      };
     case HN_NEW_DATA:
-      return {
-        ...state,
-        new: action.payload,
-        langs: {
-          ...state.langs,
-          new: getLangs(action.payload.data),
-        },
-      };
     case HN_SHOW_DATA:
+      if (action.error) {
+        return {
+          ...state,
+          [typeMap[action.type]]: action.payload,
+        };
+      }
+
       return {
         ...state,
-        show: action.payload,
+        [typeMap[action.type]]: action.payload,
         langs: {
           ...state.langs,
-          show: getLangs(action.payload.data),
+          [typeMap[action.type]]: getLangs(action.payload.data),
         },
       };
     default:

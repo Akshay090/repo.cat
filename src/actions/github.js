@@ -2,16 +2,16 @@ import 'isomorphic-fetch';
 
 const TOKEN = false;
 
-const checkStatusCode = (res) => {
-  if (res.status >= 200 && res.status < 300) {
-    return res;
-  }
-  const err = new Error(res.statusText);
-  err.response = res;
-  throw err;
+const resToJson = (res) => {
+  // spreads the error info if there's an error
+  return res.ok ? res.json() : {
+    ...(res.json()),
+    url: res.url,
+    status: res.status,
+    statusText: res.statusText,
+    ok: res.ok,
+  };
 };
-
-const resToJson = (res) => res.json();
 
 export const githubUrlParser = (urlStr) => {
   const re = /^https?:\/\/(github.com\/([^\/]+)\/([^\/#?]+)|([^\/]+).github.io\/([^\/#?]+))/; // i dont want #, ?
@@ -31,14 +31,16 @@ export const githubUrlParser = (urlStr) => {
   return false;
 };
 
+// the fetch methods _only_ throw when there's a network error.
+// it returns the error info when 403/404 happens
 export const fetchGithubRepoInfo = ({ owner, repo }) => fetch(
   TOKEN ?
     `https://api.github.com/repos/${owner}/${repo}?access_token=${TOKEN}` :
     `https://api.github.com/repos/${owner}/${repo}`
-).then(checkStatusCode).then(resToJson).catch(() => ({}));
+).then(resToJson);
 
 export const fetchGithubRepoLangInfo = ({ owner, repo }) => fetch(
   TOKEN ?
     `https://api.github.com/repos/${owner}/${repo}/languages?access_token=${TOKEN}` :
     `https://api.github.com/repos/${owner}/${repo}/languages`
-).then(checkStatusCode).then((res) => res.json()).catch(() => ({}));
+).then((res) => res.json());
