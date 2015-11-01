@@ -41,7 +41,7 @@ const asyncGetData = async (type) => {
         langs: await fetchGithubRepoLangInfo(data.github),
       },
     };
-  })).filter((x) => x); // we need a better filterMap
+  })).filter((x) => x && x.status !== 404); // 404 means it's not a github repo
 
   return [
     repoList,
