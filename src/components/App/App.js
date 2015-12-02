@@ -91,6 +91,7 @@ export default class App extends Component {
       key={idx}
       title={item.title}
       langs={item.github.langs}
+      readme={atob(item.github.readme.content.replace(/\s/g, '') || '')}
       url={item.url}
       score={item.score}
       time={item.time}

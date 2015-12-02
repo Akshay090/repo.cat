@@ -26,6 +26,14 @@ var commonConfig = {
         'postcss-loader'
       ]
     }, {
+      test: /\.scss$/,
+      loaders: [
+        'style-loader',
+        'css-loader?modules&localIdentName=[name]__[local]___[hash:base64:5]',
+        'postcss-loader',
+        'sass'
+      ]
+    }, {
       test: /\.(png|jpg)$/,
       loader: 'url-loader?limit=8192'
     }]

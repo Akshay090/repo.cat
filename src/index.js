@@ -1,4 +1,6 @@
 require('fetch-xhr'); // polyfill
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 import React from 'react';
 import { render } from 'react-dom';

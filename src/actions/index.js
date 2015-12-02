@@ -1,8 +1,9 @@
 import { fetchHNData, fetchHNDataById } from './hn';
 import {
   githubUrlParser,
-  fetchGithubRepoLangInfo,
+  fetchGithubRepoLang,
   fetchGithubRepoInfo,
+  fetchGithubRepoReadme,
 } from './github';
 
 import {
@@ -38,7 +39,8 @@ const asyncGetData = async (type) => {
       github: {
         ...data.github,
         ...githubData,
-        langs: await fetchGithubRepoLangInfo(data.github),
+        langs: await fetchGithubRepoLang(data.github),
+        readme: await fetchGithubRepoReadme(data.github),
       },
     };
   })).filter((x) => x && x.status !== 404); // 404 means it's not a github repo

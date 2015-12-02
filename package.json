@@ -39,11 +39,13 @@
     "eslint-plugin-react": "~3.6.3",
     "express": "~4.13.3",
     "file-loader": "^0.8.4",
+    "node-sass": "^3.4.2",
     "postcss-loader": "~0.7.0",
     "react-transform-catch-errors": "~1.0.0",
     "react-transform-hmr": "~1.0.0",
     "redbox-react": "~1.1.1",
     "rimraf": "~2.4.3",
+    "sass-loader": "^3.1.2",
     "static-site-generator-webpack-plugin": "^1.2.0",
     "style-loader": "~0.13.0",
     "url-loader": "^0.5.6",
@@ -66,9 +68,11 @@
     "react-motion": "^0.3.1",
     "react-redux": "^4.0.0",
     "react-router": "^1.0.0-rc3",
+    "react-tap-event-plugin": "^0.2.1",
     "redux": "^3.0.4",
     "redux-logger": "^2.0.4",
     "redux-thunk": "^1.0.0",
+    "remarkable": "^1.6.1",
     "rx-lite": "^4.0.7"
   }
 }

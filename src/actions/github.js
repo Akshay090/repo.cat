@@ -1,6 +1,5 @@
 const TOKEN = 'da69989e2f47cb87758d6a3b352aa67992f3d0ec';
-// @TODO switch to OAuth and remove this shit
-// however don't worry it's not my account
+// @TODO replace this guy with proper OAuth
 
 const resToJson = (res) => {
   // spreads the error info if there's an error
@@ -39,8 +38,14 @@ export const fetchGithubRepoInfo = ({ owner, repo }) => fetch(
     `https://api.github.com/repos/${owner}/${repo}`
 ).then(resToJson);
 
-export const fetchGithubRepoLangInfo = ({ owner, repo }) => fetch(
+export const fetchGithubRepoLang = ({ owner, repo }) => fetch(
   TOKEN ?
     `https://api.github.com/repos/${owner}/${repo}/languages?access_token=${TOKEN}` :
     `https://api.github.com/repos/${owner}/${repo}/languages`
+).then((res) => res.json());
+
+export const fetchGithubRepoReadme = ({ owner, repo }) => fetch(
+  TOKEN ?
+    `https://api.github.com/repos/${owner}/${repo}/readme?access_token=${TOKEN}` :
+    `https://api.github.com/repos/${owner}/${repo}/readme`
 ).then((res) => res.json());
