@@ -8,10 +8,6 @@ import styles from './Item.css';
 const MAX_MARKDOWN_HEIGHT = 3000;
 
 export default class Item extends Component {
-  state = {
-    isOpen: false,
-  };
-
   static propTypes = {
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
@@ -22,6 +18,27 @@ export default class Item extends Component {
     fullName: PropTypes.string.isRequired,
     readme: PropTypes.string.isRequired,
   };
+
+  state = {
+    isOpen: false,
+  };
+
+  getStyle = (show) => {
+    // @TODO
+    // is there a way to do this animation with only
+    // scale, translate, rotate, and opacity?
+    if (show === 1) {
+      return null;
+    }
+
+    return {
+      overflowY: 'hidden',
+      visibility: show === 0 ? 'hidden' : 'visible', // accessibility
+      maxHeight: show * MAX_MARKDOWN_HEIGHT,
+      opacity: show,
+      padding: `${show}rem 3rem`,
+    };
+  }
 
   handleToggle = (evt) => {
     evt.stopPropagation();
@@ -39,23 +56,6 @@ export default class Item extends Component {
     return (
       <Markdown data={data} />
     );
-  }
-
-  getStyle = (show) => {
-    // @TODO
-    // is there a way to do this animation with only
-    // scale, translate, rotate, and opacity?
-    if (show === 1) {
-      return null;
-    }
-
-    return {
-      overflowY: 'hidden',
-      visibility: show === 0 ? 'hidden' : 'visible', // accessibility
-      maxHeight: show * MAX_MARKDOWN_HEIGHT,
-      opacity: show,
-      padding: `${show}rem 3rem`,
-    };
   }
 
   render() {

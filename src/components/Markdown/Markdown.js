@@ -4,11 +4,6 @@ import Remarkable from 'Remarkable';
 import styles from './Markdown.scss';
 
 export default class Markdown extends Component {
-  constructor(...args) {
-    super(...args);
-    this.mdRenderer = new Remarkable({});
-  }
-
   static propTypes = {
     data: PropTypes.string.isRequired,
     options: PropTypes.object.isRequired,
@@ -21,7 +16,12 @@ export default class Markdown extends Component {
     options: {},
   };
 
-  componentWillUpdate(nextProps, nextState) {
+  constructor(...args) {
+    super(...args);
+    this.mdRenderer = new Remarkable({});
+  }
+
+  componentWillUpdate(nextProps) {
     if (nextProps.options !== this.props.options) {
       this.mdRenderer = new Remarkable(nextProps.options);
     }
