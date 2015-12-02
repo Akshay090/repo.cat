@@ -55,10 +55,10 @@
     "babel-runtime": "^5.0.0",
     "classnames": "^2.2.0",
     "fbjs": "^0.4.0",
+    "fetch-xhr": "^0.10.1",
     "firebase": "^2.3.1",
     "history": "^1.13.0",
     "invariant": "^2.1.2",
-    "isomorphic-fetch": "^2.2.0",
     "moment": "^2.10.6",
     "normalize.css": "^3.0.3",
     "react": "~0.14.1",
@@ -68,6 +68,7 @@
     "react-router": "^1.0.0-rc3",
     "redux": "^3.0.4",
     "redux-logger": "^2.0.4",
-    "redux-thunk": "^1.0.0"
+    "redux-thunk": "^1.0.0",
+    "rx-lite": "^4.0.7"
   }
 }

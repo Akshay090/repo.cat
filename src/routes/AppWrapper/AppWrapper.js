@@ -4,6 +4,7 @@ import styles from './AppWrapper.css';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Spinner from '../../components/Spinner';
 
 export default class AppWrapper extends Component {
   static propTypes = {
@@ -13,6 +14,7 @@ export default class AppWrapper extends Component {
   render() {
     return (
       <div className={styles.root}>
+        <Spinner />
         <Header />
         {this.props.children}
         <Footer />

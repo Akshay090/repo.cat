@@ -1,5 +1,3 @@
-import 'isomorphic-fetch';
-
 const TOKEN = 'da69989e2f47cb87758d6a3b352aa67992f3d0ec';
 // @TODO switch to OAuth and remove this shit
 // however don't worry it's not my account
