@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import Remarkable from 'Remarkable';
+import Remarkable from 'remarkable';
 import styles from './Markdown.scss';
 
 export default class Markdown extends Component {
