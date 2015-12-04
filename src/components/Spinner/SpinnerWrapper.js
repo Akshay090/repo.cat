@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { patchXHR, unpatchXHR } from './Loadin';
+// import { patchXHR, unpatchXHR } from './Loadin';
 
 export default class SpinnerWrapper extends Component {
   static propTypes = {
@@ -61,9 +61,9 @@ export default class SpinnerWrapper extends Component {
   //   ]);
   // }
 
-  componentWillUnmount() {
-    unpatchXHR(window);
-  }
+  // componentWillUnmount() {
+  //   unpatchXHR(window);
+  // }
 
   render() {
     const { loaded, total } = this.state;
