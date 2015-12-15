@@ -1,5 +1,5 @@
 {
-  "name": "code-only-hacker-news",
+  "name": "repo.cat",
   "version": "1.0.0",
   "description": "GitHub repos on Hacker News.",
   "main": "index.js",
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keyanzhang/code-only-hacker-news.git"
+    "url": "git+https://github.com/keyanzhang/repo.cat.git"
   },
   "keywords": [],
   "author": "Keyan Zhang <root@keyanzhang.com> (http://keya.nz)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/keyanzhang/code-only-hacker-news/issues"
+    "url": "https://github.com/keyanzhang/repo.cat/issues"
   },
-  "homepage": "https://github.com/keyanzhang/code-only-hacker-news#readme",
+  "homepage": "https://github.com/keyanzhang/repo.cat#readme",
   "engines": {
     "node": "4.2.x",
     "npm": "2.14.x"
