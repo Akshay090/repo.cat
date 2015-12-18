@@ -2,27 +2,13 @@ require('fetch-xhr'); // polyfill
 
 import React from 'react';
 import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import createHistory from 'history/lib/createHashHistory';
 
-import rootRoute from './routes';
-
-import './styles/reset.css';
+import 'normalize.css';
 import './styles/global.css';
 
-import configureStore from './store/configStore';
-
-const store = configureStore();
-
-const history = createHistory();
-
-if (__DEV__) {
-  window.store = () => store.getState();
-}
+import App from './App';
 
 render(
-  <Provider store={store}>
-    {rootRoute(history)}
-  </Provider>,
-  document.getElementById('root')
+  <App />,
+  document.getElementById('root'),
 );

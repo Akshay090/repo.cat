@@ -1,0 +1,3 @@
+--require ./test/requireHook.js
+--compilers js:babel-core/register
+--recursive

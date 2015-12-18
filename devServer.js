@@ -1,16 +1,20 @@
-var path = require('path');
-var express = require('express');
-var webpack = require('webpack');
-var config = require('./webpack/webpack.config.dev');
+const path = require('path');
+const express = require('express');
+const webpack = require('webpack');
+const config = require('./webpack.config');
+const ip = require('ip');
 
-var app = express();
-var compiler = webpack(config);
+const IPAddress = process.env.EXPRESS_IP || ip.address();
+const PORT = JSON.parse(process.env.EXPRESS_PORT || 5000);
+
+const app = express();
+const compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
   stats: {
-    colors: true
+    colors: true,
   },
-  publicPath: config.output.publicPath
+  publicPath: config.output.publicPath,
 }));
 
 app.use(require('webpack-hot-middleware')(compiler));
@@ -19,11 +23,11 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(14000, '0.0.0.0', (err) =>  {
+app.listen(PORT, IPAddress, (err) => {
   if (err) {
-    console.log(err);
+    console.log(err); // eslint-disable-line no-console
     return;
   }
 
-  console.log('Listening at http://0.0.0.0:14000');
+  console.log(`Listening at http://${IPAddress}:${PORT}`); // eslint-disable-line no-console
 });
