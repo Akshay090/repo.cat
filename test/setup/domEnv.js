@@ -9,4 +9,3 @@ export const unpatchDOMEnv = () => {
   global.document = null;
   global.window = null;
 };
-
