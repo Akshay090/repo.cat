@@ -9,7 +9,7 @@
     "test": "NODE_ENV=test node --harmony-proxies ./node_modules/.bin/mocha",
     "test:watch": "npm test -- --watch",
     "build:webpack": "NODE_ENV=production webpack",
-    "build": "npm run clean && npm run lint && npm run build:webpack && cp index.html ./dist/index.html",
+    "build": "npm run clean && npm run lint && npm test && npm run build:webpack && cp index.html ./dist/index.html",
     "start": "NODE_ENV=development node devServer.js",
     "start:prod": "npm run build && node index.js",
     "postinstall": "npm run build"
