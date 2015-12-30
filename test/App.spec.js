@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
-import { patchDOMEnv } from './setup/domEnv';
+import { patchDOMEnv } from './__setup__/domEnv';
 import expect from 'expect';
 
 import App from '../src/App';
