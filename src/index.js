@@ -16,17 +16,17 @@ import getRootRoute from './routes';
 import configStore from './store/configStore';
 
 const history = createHistory();
-const store = configStore();
+// const store = configStore();
 
 // if (__DEV__) {
 //   window.store = () => store.getState();
 // }
 
-syncReduxAndRouter(history, store);
+// syncReduxAndRouter(history, store);
 
 render(
-  <Provider store={store}>
-    {getRootRoute(history)}
-  </Provider>,
+//  <Provider store={store}>
+    getRootRoute(history),
+//  </Provider>,
   document.getElementById('root'),
 );
