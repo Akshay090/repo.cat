@@ -5,20 +5,20 @@
  */
 
 import React from 'react';
-import { Router, Route, Redirect } from 'react-router';
+import { Router, Route, Redirect, browserHistory } from 'react-router';
 
 import AppWrapper from './AppWrapper';
 import Main from '../components/Main';
+import FourOFour from './FourOFour';
 
-const getRootRoute = (history) => (
-  <Router history={history}>
+const getRootRoute = () => (
+  <Router history={browserHistory}>
     <Redirect from="/" to="/top" />
     <Route path="/" component={AppWrapper}>
       <Route path="/top" component={Main} />
       <Route path="/new" component={Main} />
       <Route path="/show" component={Main} />
-      {/* @TODO: 404 */}
-      <Redirect from="*" to="top" />
+      <Route path="/*" component={FourOFour} />
     </Route>
   </Router>
 );

@@ -1,2 +1,1 @@
-import { routeReducer } from 'redux-simple-router';
-
+export { routeReducer as routing } from 'redux-simple-router';

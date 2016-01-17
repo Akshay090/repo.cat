@@ -1,0 +1,1 @@
+export const FILTER_LANG_SWITCH = 'FILTER_LANG_SWITCH';

@@ -3,7 +3,15 @@ import styles from './Footer.css';
 
 const Footer = () => (
   <footer className={styles.root}>
-    Just a footer chillin' here
+    <a href="about">
+      About
+    </a>
+    <a
+      href="https://github.com/keyanzhang/repo.cat"
+      target="_blank"
+    >
+      Source on GitHub
+    </a>
   </footer>
 );
 
