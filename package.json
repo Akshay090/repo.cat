@@ -74,7 +74,6 @@
     "fbjs": "^0.6.1",
     "fetch-xhr": "^0.10.1",
     "firebase": "^2.3.2",
-    "history": "^2.0.0-rc2",
     "immutable": "^3.7.5",
     "invariant": "^2.2.0",
     "ip": "^1.1.0",
