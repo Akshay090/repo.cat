@@ -1,8 +1,11 @@
+require('babel-register');
+
 const path = require('path');
 const express = require('express');
 const webpack = require('webpack');
 const config = require('./webpack.config');
 const ip = require('ip');
+const devTools = require('./devTools');
 
 const IPAddress = process.env.EXPRESS_IP || ip.address();
 const PORT = JSON.parse(process.env.EXPRESS_PORT || 5000);
@@ -31,3 +34,5 @@ app.listen(PORT, IPAddress, (err) => {
 
   console.log(`Listening at http://${IPAddress}:${PORT}`); // eslint-disable-line no-console
 });
+
+devTools.keyPressHookIn(IPAddress, PORT);
