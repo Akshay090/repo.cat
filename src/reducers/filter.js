@@ -1,6 +1,6 @@
 import {
   FILTER_LANG_SWITCH,
-} from '../constants/UserSide';
+} from '../constants';
 
 import { Map as iMap } from 'immutable';
 

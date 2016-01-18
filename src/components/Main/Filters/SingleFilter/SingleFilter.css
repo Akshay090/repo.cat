@@ -14,8 +14,3 @@
 .selected {
   border: 1px solid rebeccapurple;
 }
-
-.buttonReset {
-  background: none;
-  font-family: inherit;
-}

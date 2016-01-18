@@ -1,6 +1,6 @@
 import {
   FILTER_LANG_SWITCH,
-} from '../constants/UserSide';
+} from '../constants';
 
 export const filterSwitch = (lang) => (dispatch) => {
   dispatch({

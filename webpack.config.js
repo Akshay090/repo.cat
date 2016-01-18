@@ -1,8 +1,18 @@
-const webpack = require('webpack');
+const {
+  DefinePlugin,
+  HotModuleReplacementPlugin,
+  NoErrorsPlugin,
+  optimize,
+} = require('webpack');
+const { OccurenceOrderPlugin, UglifyJsPlugin } = optimize;
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const env = process.env.NODE_ENV || 'development';
 const isDev = env === 'development';
+
+const defineConstPlugin = new DefinePlugin({
+  __DEV__: isDev,
+});
 
 module.exports = {
   devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
@@ -23,17 +33,13 @@ module.exports = {
   },
 
   plugins: isDev ? [
-    new webpack.DefinePlugin({
-      '__DEV__': isDev,
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    defineConstPlugin,
+    new HotModuleReplacementPlugin(),
+    new NoErrorsPlugin(),
   ] : [
-    new webpack.DefinePlugin({
-      '__DEV__': isDev,
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
+    defineConstPlugin,
+    new OccurenceOrderPlugin(),
+    new UglifyJsPlugin({
       compressor: { warnings: false },
     }),
   ],

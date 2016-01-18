@@ -3,6 +3,10 @@
   color: inherit;
 }
 
+.resetA:hover {
+  text-decoration: underline;
+}
+
 .navsContainer {
   display: flex;
   flex-direction: row;

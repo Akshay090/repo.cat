@@ -12,11 +12,12 @@ const Footer = () => (
       className={cx(styles.nav, commonStyles.resetA)}
       activeClassName={cx(commonStyles.activeNav, commonStyles.resetA)}
     >
-      About
+    About
     </Link>
     <a
       href="https://github.com/keyanzhang/repo.cat"
       target="_blank"
+      className={commonStyles.resetA}
     >
       Source on GitHub
     </a>
