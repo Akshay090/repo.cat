@@ -1,16 +1,10 @@
-const {
-  DefinePlugin,
-  HotModuleReplacementPlugin,
-  NoErrorsPlugin,
-  optimize,
-} = require('webpack');
-const { OccurenceOrderPlugin, UglifyJsPlugin } = optimize;
+const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const env = process.env.NODE_ENV || 'development';
 const isDev = env === 'development';
 
-const defineConstPlugin = new DefinePlugin({
+const defineConstPlugin = new webpack.DefinePlugin({
   __DEV__: isDev,
 });
 
@@ -34,12 +28,12 @@ module.exports = {
 
   plugins: isDev ? [
     defineConstPlugin,
-    new HotModuleReplacementPlugin(),
-    new NoErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
   ] : [
     defineConstPlugin,
-    new OccurenceOrderPlugin(),
-    new UglifyJsPlugin({
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
       compressor: { warnings: false },
     }),
   ],
