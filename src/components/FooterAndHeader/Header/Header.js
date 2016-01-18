@@ -3,6 +3,9 @@ import { Link, IndexLink } from 'react-router';
 
 import cx from 'classnames';
 import styles from './Header.css';
+import commonStyles from '../FooterAndHeaderCommon.css';
+
+import { capitalizeFirstLetter } from '../../../lib';
 
 const headerItems = [
   { text: 'top', linkTo: '/top' },
@@ -14,20 +17,20 @@ const Header = () => (
   <header className={styles.root}>
     <IndexLink
       to="/"
-      className={cx(styles.logoContainer, styles.resetA)}
+      className={cx(styles.logoContainer, commonStyles.resetA)}
     >
       <span className={styles.logoText}>repo.cat</span>
     </IndexLink>
-    <div className={styles.navsContainer}>
+    <div className={commonStyles.navsContainer}>
       {
         headerItems.map((item, idx) => (
           <Link
             to={item.linkTo}
             key={idx}
-            className={cx(styles.nav, styles.resetA)}
-            activeClassName={cx(styles.activeNav, styles.resetA)}
+            className={commonStyles.resetA}
+            activeClassName={cx(commonStyles.activeNav, commonStyles.resetA)}
           >
-            {item.text}
+            {capitalizeFirstLetter(item.text)}
           </Link>
         ))
       }

@@ -1,0 +1,15 @@
+.resetA {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navsContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.activeNav {
+  font-weight: bold;
+}

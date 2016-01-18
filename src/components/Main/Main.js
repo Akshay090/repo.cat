@@ -3,13 +3,16 @@ import PureComponent from '../PureComponent';
 // import Filters from './Filters';
 // import styles from './Main.css';
 
-export default class Main extends PureComponent {
+import topConnector from './topConnector';
+
+class Main extends PureComponent {
   static propTypes = {
     location: PropTypes.object.isRequired,
     pathname: PropTypes.string.isRequired,
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         {this.props.location && this.props.location.pathname}
@@ -17,3 +20,5 @@ export default class Main extends PureComponent {
     );
   }
 }
+
+export default topConnector(Main);

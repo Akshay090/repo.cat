@@ -3,13 +3,14 @@ import { Link } from 'react-router';
 import cx from 'classnames';
 
 import styles from './Footer.css';
+import commonStyles from '../FooterAndHeaderCommon.css';
 
 const Footer = () => (
   <footer className={styles.root}>
     <Link
       to={'about'}
-      className={cx(styles.nav, styles.resetA)}
-      activeClassName={cx(styles.activeNav, styles.resetA)}
+      className={cx(styles.nav, commonStyles.resetA)}
+      activeClassName={cx(commonStyles.activeNav, commonStyles.resetA)}
     >
       About
     </Link>
