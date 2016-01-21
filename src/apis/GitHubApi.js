@@ -3,7 +3,7 @@ const TOKEN = 'da69989e2f47cb87758d6a3b352aa67992f3d0ec';
 // @TODO replace this guy with proper OAuth
 
 const resToJson = (res) => {
-  // returns _only_ the error info if there's an error
+  // contains the error info when an error occurs
   return res.ok ? res.json() : {
     url: res.url,
     status: res.status,

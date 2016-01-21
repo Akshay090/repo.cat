@@ -5,7 +5,7 @@ const hnRef = new Firebase('https://hacker-news.firebaseio.com/v0/');
 
 export const fetchHNItems = (refName) => {
   const ref = hnRef.child(refName);
-  invariant(ref, `ref ${refName} not found`);
+  invariant(ref, `ref ${refName} not provided`);
 
   return new Promise((resolve) => {
     ref.once(
@@ -17,8 +17,8 @@ export const fetchHNItems = (refName) => {
 
 export const fetchHNItemById = (refName, id) => {
   const ref = hnRef.child(refName);
-  invariant(ref, `ref ${refName} not found`);
-  invariant(id, `id ${id} not found`);
+  invariant(ref, `ref ${refName} not provided`);
+  invariant(id, `id ${id} not provided`);
 
   return new Promise((resolve) => {
     ref.child(id).once(
