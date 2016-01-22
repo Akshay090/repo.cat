@@ -17,13 +17,13 @@ export const gitHubUrlParser = (urlStr) => {
   const resultArr = urlStr.match(re);
   if (resultArr && resultArr[4]) {  // [4].github.io/[5]
     return {
-      owner: resultArr[4],
-      repo: resultArr[5],
+      by: resultArr[4],
+      name: resultArr[5],
     };
   } else if (resultArr && resultArr[2]) { // github.com/[2]/[3]
     return {
-      owner: resultArr[2],
-      repo: resultArr[3],
+      by: resultArr[2],
+      name: resultArr[3],
     };
   }
 
@@ -32,20 +32,20 @@ export const gitHubUrlParser = (urlStr) => {
 
 // the fetch methods _only_ throw when there's a network error.
 // it returns the error info when 403/404 happens
-export const fetchGitHubRepoInfo = ({ owner, repo }) => fetch(
+export const fetchGitHubRepoInfo = ({ by, name }) => fetch(
   TOKEN ?
-    `https://api.github.com/repos/${owner}/${repo}?access_token=${TOKEN}` :
-    `https://api.github.com/repos/${owner}/${repo}`
+    `https://api.github.com/repos/${by}/${name}?access_token=${TOKEN}` :
+    `https://api.github.com/repos/${by}/${name}`
 ).then(resToJson);
 
-export const fetchGitHubRepoLangs = ({ owner, repo }) => fetch(
+export const fetchGitHubRepoLangs = ({ by, name }) => fetch(
   TOKEN ?
-    `https://api.github.com/repos/${owner}/${repo}/languages?access_token=${TOKEN}` :
-    `https://api.github.com/repos/${owner}/${repo}/languages`
+    `https://api.github.com/repos/${by}/${name}/languages?access_token=${TOKEN}` :
+    `https://api.github.com/repos/${by}/${name}/languages`
 ).then(resToJson);
 
-export const fetchGitHubRepoReadme = ({ owner, repo }) => fetch(
+export const fetchGitHubRepoReadme = ({ by, name }) => fetch(
   TOKEN ?
-    `https://api.github.com/repos/${owner}/${repo}/readme?access_token=${TOKEN}` :
-    `https://api.github.com/repos/${owner}/${repo}/readme`
+    `https://api.github.com/repos/${by}/${name}/readme?access_token=${TOKEN}` :
+    `https://api.github.com/repos/${by}/${name}/readme`
 ).then(resToJson);
