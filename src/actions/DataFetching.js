@@ -13,7 +13,7 @@ import {
   REPO_READMES,
 } from '../constants';
 
-const idFn = (x) => x;
+import { idFn } from '../lib';
 
 const asyncGetSingleRepoInfo = async (slugObj, mergeObj) => {
   // slugObj === { by, name }
@@ -65,7 +65,8 @@ const asyncGetRepoInfo = async (type) => {
   };
 };
 
-export const loadAllForType = (type) => async (dispatch) => {
+// we thunk it for the app to call it easily on first mount
+export const loadAllForType = (type) => () => async (dispatch) => {
   const { repoData, rawItemCount } = await asyncGetRepoInfo(type);
   dispatch({
     type: typeToActionMap[type],

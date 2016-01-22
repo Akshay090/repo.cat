@@ -11,6 +11,12 @@ export const typeToActionMap = {
   show: HN_SHOW_DATA,
 };
 
+export const actionToTypeMap = {
+  [HN_TOP_DATA]: 'top',
+  [HN_NEW_DATA]: 'new',
+  [HN_SHOW_DATA]: 'show',
+};
+
 export const typeToHNTypeMap = {
   top: 'topstories',
   new: 'newstories',
