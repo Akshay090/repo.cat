@@ -24,17 +24,19 @@ const asyncGetSingleRepoInfo = async (slugObj, mergeObj) => {
 
 const asyncGetSingleRepoLangs = async (slugObj, mergeObj) => {
   const langs = await fetchGitHubRepoLangs(slugObj);
-  return langs.notOk ? false : {
+  return {
     ...mergeObj,
-    ...langs,
+    langs: langs.notOk ? false : langs,
   };
 };
 
 const asyncGetSingleRepoReadme = async (slugObj, mergeObj) => {
   const readme = await fetchGitHubRepoReadme(slugObj);
-  return readme.notOk ? false : {
+  // readme is kinda special
+  // instead of returning false we should mark them as not having a readme
+  return {
     ...mergeObj,
-    ...readme,
+    readme: readme.notOk ? false : readme,
   };
 };
 
@@ -49,7 +51,7 @@ const asyncGetRepoInfo = async (type) => {
       ...item,
       github: gitHubUrlParser(item.url),
     }))
-    .filter((obj) => obj.github); // the url links to a github repo
+    .filter((obj) => obj.github); // has a url that links to a github repo
 
   const repoData = (await Promise.all(
     possibleGitHubItems.map((item) => asyncGetSingleRepoInfo(item.github, item))
@@ -82,7 +84,7 @@ export const loadAllForType = (type) => async (dispatch) => {
 
   const readmes = (await Promise.all(
     repoData.map(({ github, id }) => asyncGetSingleRepoReadme(github, { id })),
-  )).filter(idFn);
+  )); // don't filter here. instead, let the reducer mark them as false
 
   dispatch({
     type: typeToActionMap[type] + '_READMES', // @TODO this doesn't feel right
