@@ -9,6 +9,8 @@ import {
 
 import {
   typeToActionMap,
+  REPO_LANGS,
+  REPO_READMES,
 } from '../constants';
 
 const idFn = (x) => x;
@@ -78,8 +80,11 @@ export const loadAllForType = (type) => async (dispatch) => {
   );
 
   dispatch({
-    type: typeToActionMap[type] + '_LANGS', // @TODO this doesn't feel right
-    payload: langs,
+    type: REPO_LANGS,
+    payload: {
+      category: typeToActionMap[type],
+      langs,
+    },
   });
 
   const readmes = (await Promise.all(
@@ -87,7 +92,10 @@ export const loadAllForType = (type) => async (dispatch) => {
   )); // don't filter here. instead, let the reducer mark them as false
 
   dispatch({
-    type: typeToActionMap[type] + '_READMES', // @TODO this doesn't feel right
-    payload: readmes,
+    type: REPO_READMES,
+    payload: {
+      category: typeToActionMap[type],
+      readmes,
+    },
   });
 };
