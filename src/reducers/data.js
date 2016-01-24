@@ -1,6 +1,7 @@
 import {
   Map as iMap,
   OrderedMap as iOrderedMap,
+  fromJS,
 } from 'immutable';
 
 import {
@@ -27,7 +28,7 @@ const dataReducer = (state = initialDataState, action) => {
         (ordMap) => ordMap.withMutations((oMutMap) => {
           // make it clear that this is set effect only
           repoData.forEach((obj) => {
-            oMutMap.set(obj.id, obj);
+            oMutMap.set(obj.id, fromJS(obj));
           });
         }),
       );

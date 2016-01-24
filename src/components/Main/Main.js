@@ -4,6 +4,8 @@ import { map } from 'react-immutable-proptypes';
 import { arrayPop } from '../../lib';
 
 import Filters from './Filters';
+import ItemList from './ItemList';
+
 import styles from './Main.css';
 
 import topConnector from './topConnector';
@@ -12,6 +14,7 @@ class Main extends Component { // @TODO use PureComponent
   static propTypes = {
     data: map.isRequired,
     stats: map.isRequired,
+    langs: map.isRequired,
 
     fetchData: PropTypes.func.isRequired,
     routing: PropTypes.object.isRequired,
@@ -66,12 +69,12 @@ class Main extends Component { // @TODO use PureComponent
 
   render() {
     window.p = this.props;
-    const { stats, routing } = this.props;
+    const { data, stats, routing, langs } = this.props;
     const { location } = routing;
 
     const whatAmI = location.pathname.substring(1);
     const langSet = stats.get(whatAmI);
-
+    const itemData = data.get(whatAmI);
     const queryfilters = location.query.filters || [];
     const queryFilterStatus = Array.isArray(queryfilters) ? queryfilters : [ queryfilters ];
 
@@ -87,9 +90,11 @@ class Main extends Component { // @TODO use PureComponent
           handleHideFilterClick={this.handleHideFilterClick}
           getDestination={this.getDestination(location.pathname, validFilterStatus)}
         />
-        <pre>
-          {JSON.stringify(validFilterStatus, null, 2)}
-        </pre>
+        <ItemList
+          itemData={itemData}
+          filterStatus={validFilterStatus}
+          langs={langs}
+        />
       </div>
     );
   }

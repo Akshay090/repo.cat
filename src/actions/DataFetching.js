@@ -21,7 +21,10 @@ const asyncGetSingleRepoInfo = async (slugObj, mergeObj) => {
   const repoInfo = await fetchGitHubRepoInfo(slugObj);
   return repoInfo.notOk ? false : {
     ...mergeObj,
-    ...repoInfo,
+    github: {
+      ...(mergeObj.github),
+      ...repoInfo,
+    },
   };
 };
 
