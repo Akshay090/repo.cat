@@ -23,6 +23,10 @@
   justify-content: center;
 }
 
+.logoContainer:hover {
+  text-decoration: none;
+}
+
 .logoText {
   composes: mono from '../../../styles/typography.css';
   transition: transform 2s ease;

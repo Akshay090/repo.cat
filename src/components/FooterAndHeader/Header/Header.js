@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link, IndexLink } from 'react-router';
 
 import cx from 'classnames';
@@ -13,7 +13,7 @@ const headerItems = [
   { text: 'show', linkTo: '/show' },
 ];
 
-const Header = () => (
+const Header = ({ query }) => (
   <header className={styles.root}>
     <IndexLink
       to="/"
@@ -25,7 +25,10 @@ const Header = () => (
       {
         headerItems.map((item, idx) => (
           <Link
-            to={item.linkTo}
+            to={{
+              pathname: item.linkTo,
+              query,
+            }}
             key={idx}
             className={commonStyles.resetA}
             activeClassName={cx(commonStyles.activeNav, commonStyles.resetA)}
@@ -37,5 +40,9 @@ const Header = () => (
     </div>
   </header>
 );
+
+Header.propTypes = {
+  query: PropTypes.object.isRequired,
+};
 
 export default Header;

@@ -8,13 +8,16 @@ import { Footer, Header } from '../../components/FooterAndHeader';
 export default class AppWrapper extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
+    location: PropTypes.object.isRequired,
   };
 
   render() {
+    const { children, location } = this.props;
+
     return (
       <div className={styles.root}>
-        <Header />
-        {this.props.children}
+        <Header query={location.query} />
+        {children}
         <Footer />
       </div>
     );

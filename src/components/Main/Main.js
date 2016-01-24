@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { map } from 'react-immutable-proptypes';
-// import PureComponent from '../PureComponent';
-import Filters from './Filters';
-import styles from './Main.css';
 
 import { arrayPop } from '../../lib';
+
+import Filters from './Filters';
+import styles from './Main.css';
 
 import topConnector from './topConnector';
 
@@ -18,12 +18,20 @@ class Main extends Component { // @TODO use PureComponent
     type: PropTypes.string.isRequired,
   };
 
+  static contextTypes = {
+    router: PropTypes.object,
+  };
+
   state = {
     showFilter: true,
   };
 
   componentDidMount() {
-    this.props.fetchData();
+    const { data, type } = this.props;
+
+    if (data.get(type).count() === 0) {
+      this.props.fetchData();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -80,16 +88,22 @@ class Main extends Component { // @TODO use PureComponent
     const { location } = this.props.routing;
 
     const whatAmI = location.pathname.substring(1);
-    const filters = location.query.filters || [];
-    const loc = Array.isArray(filters) ? filters : [ filters ];
+    const langSet = stats.get(whatAmI);
+
+    const queryfilters = location.query.filters || [];
+    const queryFilterStatus = Array.isArray(queryfilters) ? queryfilters : [ queryfilters ];
+
+    // @TODO if is fetching
+    const filterStatus = queryFilterStatus.filter((item) => langSet.includes(item));
+
     return (
       <div className={styles.root}>
         <Filters
-          langSet={stats.get(whatAmI)}
+          langSet={langSet}
           showFilter={this.state.showFilter}
-          filterStatus={loc}
+          filterStatus={filterStatus}
           handleHideFilterClick={this.handleHideFilterClick}
-          getDestination={this.getDestination(location.pathname, loc)}
+          getDestination={this.getDestination(location.pathname, filterStatus)}
         />
         <pre>
           {JSON.stringify(location.query, null, 2)}
