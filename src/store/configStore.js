@@ -1,12 +1,17 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import createLogger from 'redux-logger';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import * as reducers from '../reducers';
+import {
+  logger,
+  reduxRouter,
+  thunk,
+} from '../middlewares';
 
-import rootReducer from '../reducers';
+const rootReducer = combineReducers(reducers);
 
 const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware,
-  createLogger(),
+  reduxRouter,
+  thunk,
+  logger,
 )(createStore);
 
 const configureStore = (initialState) => {

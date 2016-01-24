@@ -2,21 +2,22 @@ import React, { Component, PropTypes } from 'react';
 
 import styles from './AppWrapper.css';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Spinner from '../../components/Spinner';
+import { Footer, Header } from '../../components/FooterAndHeader';
+// import Spinner from '../../components/Spinner';
 
 export default class AppWrapper extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
+    location: PropTypes.object.isRequired,
   };
 
   render() {
+    const { children, location } = this.props;
+
     return (
       <div className={styles.root}>
-        <Spinner />
-        <Header />
-        {this.props.children}
+        <Header query={location.query} />
+        {children}
         <Footer />
       </div>
     );

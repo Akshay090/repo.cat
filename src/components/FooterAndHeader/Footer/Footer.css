@@ -1,0 +1,9 @@
+.root {
+  height: 30px;
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}

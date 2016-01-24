@@ -1,0 +1,5 @@
+--require ./test/__setup__/polyfills.js
+--require ./test/__setup__/requireHook.js
+--compilers js:babel-core/register
+--recursive
+--reporter nyan

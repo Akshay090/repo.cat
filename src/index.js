@@ -1,28 +1,28 @@
-require('fetch-xhr'); // polyfill
+require('fetch-xhr'); // polyfill for loadin
 
-import React from 'react';
-import { render } from 'react-dom';
-import { Provider } from 'react-redux';
-import createHistory from 'history/lib/createHashHistory';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
-import rootRoute from './routes';
-
-import './styles/reset.css';
+import 'normalize.css';
 import './styles/global.css';
 
-import configureStore from './store/configStore';
+import React from 'react';
 
-const store = configureStore();
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
-const history = createHistory();
+import getRootRoute from './routes';
+import configStore from './store/configStore';
+
+const store = configStore();
 
 if (__DEV__) {
-  window.store = () => store.getState();
+  window.s = () => store.getState();
 }
 
 render(
   <Provider store={store}>
-    {rootRoute(history)}
+    {getRootRoute()}
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
