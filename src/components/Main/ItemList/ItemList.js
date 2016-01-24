@@ -12,11 +12,11 @@ const getItemLangs = (id, langs) => {
   return res.keySeq().toArray();
 };
 
-const ItemList = ({ itemData, filterStatus, langs }) => {
+const ItemList = ({ itemData, filterStatus, langs, readmes }) => {
   const itemsToRender = itemData.filter((item) => {
     const currentLangs = langs.get(item.get('id'));
     if (currentLangs === FETCH_PENDING ||
-        currentLangs.count() === 0 ||
+        (currentLangs.count() === 0 && filterStatus.length === 0) ||
         filterStatus.length === 0) {
       return true;
     }
@@ -36,6 +36,7 @@ const ItemList = ({ itemData, filterStatus, langs }) => {
           time={item.get('time')}
           stars={item.getIn([ 'github', 'stargazers_count' ])}
           fullName={item.getIn([ 'github', 'full_name' ])}
+          readmeContent={readmes.getIn([ item.get('id'), 'content' ])}
         />
       ))}
     </div>
@@ -46,6 +47,7 @@ ItemList.propTypes = {
   itemData: map.isRequired,
   filterStatus: PropTypes.array.isRequired,
   langs: map.isRequired,
+  readmes: map.isRequired,
 };
 
 export default ItemList;

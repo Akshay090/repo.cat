@@ -19,6 +19,7 @@ class Main extends Component { // @TODO use PureComponent
     fetchData: PropTypes.func.isRequired,
     routing: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
+    readmes: map.isRequired,
   };
 
   static contextTypes = {
@@ -68,8 +69,11 @@ class Main extends Component { // @TODO use PureComponent
   };
 
   render() {
-    window.p = this.props;
-    const { data, stats, routing, langs } = this.props;
+    if (__DEV__) {
+      window.p = this.props;
+    }
+
+    const { data, stats, routing, langs, readmes } = this.props;
     const { location } = routing;
 
     const whatAmI = location.pathname.substring(1);
@@ -94,6 +98,7 @@ class Main extends Component { // @TODO use PureComponent
           itemData={itemData}
           filterStatus={validFilterStatus}
           langs={langs}
+          readmes={readmes}
         />
       </div>
     );
