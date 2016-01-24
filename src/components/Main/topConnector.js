@@ -22,8 +22,6 @@ const mergeProps = (stateProps, dispatchProps) => {
   const {
     dispatch,
     loadAllForType,
-    filterSwitch,
-    setFilterStatus,
   } = dispatchProps;
 
   const { pathname } = stateProps.routing.location;
@@ -38,8 +36,6 @@ const mergeProps = (stateProps, dispatchProps) => {
     dispatch,
     ...stateProps,
     fetchData,
-    filterSwitch: filterSwitch(dispatch),
-    setFilterStatus: setFilterStatus(dispatch),
   } : stateProps;
 };
 

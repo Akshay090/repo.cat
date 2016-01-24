@@ -64,28 +64,10 @@ class Main extends Component { // @TODO use PureComponent
     });
   };
 
-  // @TODO sync router query to the store? is it necessary?
-  // filterSwitch = (langs) => (newLangClick) => () => {
-  //   const idx = langs.indexOf(newLangClick);
-  //   if (idx === -1) {
-  //     langs.push(newLangClick);
-  //   } else {
-  //     langs.splice(idx, 1);
-  //   }
-
-  //   this.props.setFilterStatus(
-  //     seqToObj(langs),
-  //   );
-  // };
-
   render() {
     window.p = this.props;
-    const {
-      stats,
-//      filters,
-//      filterSwitch,
-    } = this.props;
-    const { location } = this.props.routing;
+    const { stats, routing } = this.props;
+    const { location } = routing;
 
     const whatAmI = location.pathname.substring(1);
     const langSet = stats.get(whatAmI);
@@ -93,20 +75,20 @@ class Main extends Component { // @TODO use PureComponent
     const queryfilters = location.query.filters || [];
     const queryFilterStatus = Array.isArray(queryfilters) ? queryfilters : [ queryfilters ];
 
-    // @TODO if is fetching
-    const filterStatus = queryFilterStatus.filter((item) => langSet.includes(item));
+    // @TODO check if is fetching
+    const validFilterStatus = queryFilterStatus.filter((item) => langSet.includes(item));
 
     return (
       <div className={styles.root}>
         <Filters
           langSet={langSet}
           showFilter={this.state.showFilter}
-          filterStatus={filterStatus}
+          filterStatus={validFilterStatus}
           handleHideFilterClick={this.handleHideFilterClick}
-          getDestination={this.getDestination(location.pathname, filterStatus)}
+          getDestination={this.getDestination(location.pathname, validFilterStatus)}
         />
         <pre>
-          {JSON.stringify(location.query, null, 2)}
+          {JSON.stringify(validFilterStatus, null, 2)}
         </pre>
       </div>
     );

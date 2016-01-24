@@ -1,5 +1,4 @@
 export { default as routing } from './routing';
-export { default as filter } from './filter';
 export { default as data } from './data';
 export { default as langs } from './langs';
 export { default as readmes } from './readmes';
