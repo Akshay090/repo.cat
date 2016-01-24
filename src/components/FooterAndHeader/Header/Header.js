@@ -3,7 +3,7 @@ import { Link, IndexLink } from 'react-router';
 
 import cx from 'classnames';
 import styles from './Header.css';
-import commonStyles from '../FooterAndHeaderCommon.css';
+import commonStyles from '../../../styles/common.css';
 
 import { capitalizeFirstLetter } from '../../../lib';
 

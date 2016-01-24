@@ -9,14 +9,15 @@ import {
 
 import {
   typeToActionMap,
+  typeToHNTypeMap,
   REPO_LANGS,
   REPO_READMES,
 } from '../constants';
 
 import { idFn } from '../lib';
 
+// slugObj === { by, name }
 const asyncGetSingleRepoInfo = async (slugObj, mergeObj) => {
-  // slugObj === { by, name }
   const repoInfo = await fetchGitHubRepoInfo(slugObj);
   return repoInfo.notOk ? false : {
     ...mergeObj,
@@ -42,8 +43,9 @@ const asyncGetSingleRepoReadme = async (slugObj, mergeObj) => {
   };
 };
 
+// type is one of [ 'top', 'new', 'show' ]
 const asyncGetRepoInfo = async (type) => {
-  const topStoryIds = await fetchHNItems(type); // [ 9127232, 9128437, ... ]
+  const topStoryIds = await fetchHNItems(typeToHNTypeMap[type]); // [ 9127232, 9128437, ... ]
   const rawHNItems = await Promise.all(topStoryIds.map((id) => fetchHNItemById('item', id)));
   const rawItemCount = rawHNItems.length;
 
@@ -66,6 +68,8 @@ const asyncGetRepoInfo = async (type) => {
 };
 
 // we thunk it for the app to call it easily on first mount
+// relies on `redux-thunk` middleware
+// type is one of [ 'top', 'new', 'show' ]
 export const loadAllForType = (type) => () => async (dispatch) => {
   const { repoData, rawItemCount } = await asyncGetRepoInfo(type);
   dispatch({
@@ -83,7 +87,7 @@ export const loadAllForType = (type) => () => async (dispatch) => {
   dispatch({
     type: REPO_LANGS,
     payload: {
-      category: typeToActionMap[type],
+      category: type,
       langs,
     },
   });
@@ -95,7 +99,7 @@ export const loadAllForType = (type) => () => async (dispatch) => {
   dispatch({
     type: REPO_READMES,
     payload: {
-      category: typeToActionMap[type],
+      category: type,
       readmes,
     },
   });

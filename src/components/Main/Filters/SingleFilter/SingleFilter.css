@@ -1,4 +1,4 @@
-.root {
+.link {
   flex-shrink: 0; /* yeah, this fixed the overlapping bug on iOS Safari */
   padding: 0.2em 0.5em;
   margin: 0.1em;
@@ -11,6 +11,12 @@
   cursor: pointer;
 }
 
+.link:hover {
+  text-decoration: none;
+  border: 1px solid rgba(102, 51, 153, 0.1);
+  transition: border 0.2s ease-out;
+}
+
 .selected {
-  border: 1px solid rebeccapurple;
+  border: 1px solid rebeccapurple !important; /* overwrites the hover */
 }

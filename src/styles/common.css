@@ -1,0 +1,19 @@
+.resetA {
+  text-decoration: none;
+  color: inherit;
+}
+
+.resetA:hover {
+  text-decoration: underline;
+}
+
+.navsContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.activeNav {
+  font-weight: bold;
+}

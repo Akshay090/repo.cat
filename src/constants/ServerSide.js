@@ -5,6 +5,8 @@ export const HN_SHOW_DATA = 'HN_SHOW_DATA';
 export const REPO_LANGS = 'REPO_LANGS';
 export const REPO_READMES = 'REPO_READMES';
 
+export const dataTypes = [ 'top', 'new', 'show' ];
+
 export const typeToActionMap = {
   top: HN_TOP_DATA,
   new: HN_NEW_DATA,

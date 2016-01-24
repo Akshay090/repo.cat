@@ -1,24 +1,26 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import cx from 'classnames';
 import styles from './SingleFilter.css';
+import commonStyles from '../../../../styles/common.css';
 
-const SingleFilter = ({ selected, handleClick, lang }) => (
-  <div
-    role="button"
+const SingleFilter = ({ selected, destination, lang }) => (
+  <Link
+    to={destination}
     className={cx({
-      [styles.root]: true,
+      [commonStyles.resetA]: true,
+      [styles.link]: true,
       [styles.selected]: selected,
     })}
-    onClick={handleClick}
   >
     {lang}
-  </div>
+  </Link>
 );
 
 SingleFilter.propTypes = {
   selected: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired,
+  destination: PropTypes.object.isRequired,
   lang: PropTypes.string.isRequired,
 };
 

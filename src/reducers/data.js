@@ -1,35 +1,19 @@
-import { /* Map as iMap, */ fromJS } from 'immutable';
-
-// const arrayToObj = (array, getField) => {
-//   return array.reduce(
-//     (res, obj) => {
-//       const field = getField(obj);
-//       res[field] = obj; // eslint-disable-line no-param-reassign
-//       return res;
-//     },
-//     {},
-//   );
-// }
+import {
+  Map as iMap,
+  OrderedMap as iOrderedMap,
+} from 'immutable';
 
 import {
   HN_TOP_DATA,
   HN_NEW_DATA,
   HN_SHOW_DATA,
   actionToTypeMap,
-  REPO_LANGS,
-  REPO_READMES,
 } from '../constants';
 
-const initialDataState = fromJS({
-  top: {
-    langs: {},
-  },
-  new: {
-    langs: {},
-  },
-  show: {
-    langs: {},
-  },
+const initialDataState = iMap({
+  top: iOrderedMap(),
+  new: iOrderedMap(),
+  show: iOrderedMap(),
 });
 
 const dataReducer = (state = initialDataState, action) => {
@@ -37,20 +21,19 @@ const dataReducer = (state = initialDataState, action) => {
     case HN_TOP_DATA:
     case HN_NEW_DATA:
     case HN_SHOW_DATA:
-      const newState = state.merge(
-        actionToTypeMap[action.type],
-        fromJS(action.payload),
+      const { repoData } = action.payload;
+      return state.updateIn(
+        [ actionToTypeMap[action.type] ],
+        (ordMap) => ordMap.withMutations((oMutMap) => {
+          // make it clear that this is set effect only
+          repoData.forEach((obj) => {
+            oMutMap.set(obj.id, obj);
+          });
+        }),
       );
 
-      return newState;
-      // break;
-    case REPO_LANGS:
-    case REPO_READMES:
-
-      break;
     default:
-
-      break;
+      return state;
   }
 };
 

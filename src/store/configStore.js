@@ -1,11 +1,17 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import * as reducers from '../reducers';
-import * as middlewares from '../middlewares';
+import {
+  logger,
+  reduxRouter,
+  thunk,
+} from '../middlewares';
 
 const rootReducer = combineReducers(reducers);
 
-const createStoreWithMiddleware = compose(
-  applyMiddleware(...Object.values(middlewares)),
+const createStoreWithMiddleware = applyMiddleware(
+  reduxRouter,
+  thunk,
+  logger,
 )(createStore);
 
 const configureStore = (initialState) => {

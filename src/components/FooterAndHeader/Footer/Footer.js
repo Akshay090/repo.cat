@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import cx from 'classnames';
 
 import styles from './Footer.css';
-import commonStyles from '../FooterAndHeaderCommon.css';
+import commonStyles from '../../../styles/common.css';
 
 const Footer = () => (
   <footer className={styles.root}>
