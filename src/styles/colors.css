@@ -9,3 +9,13 @@
 .bg {
   background-color: rgb(248, 245, 240);
 }
+
+.readmeBg {
+  background-image: linear-gradient(
+    to right,
+    rgb(248, 245, 240),
+    rgb(254, 251, 246) 2%,
+    rgb(254, 251, 246) 98%,
+    rgb(248, 245, 240) 100%
+  );
+}

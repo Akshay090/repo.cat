@@ -36,7 +36,7 @@ export default class SingleItem extends Component {
       visibility: show === 0 ? 'hidden' : 'visible', // accessibility
       maxHeight: show * MAX_MARKDOWN_HEIGHT,
       opacity: show,
-      padding: `${show}rem 3rem`,
+      padding: `${show}rem 2.5rem`,
     };
   };
 

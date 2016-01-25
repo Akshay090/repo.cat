@@ -26,19 +26,23 @@ const ItemList = ({ itemData, filterStatus, langs, readmes }) => {
 
   return (
     <div>
-      {itemsToRender.map((item, idx) => (
-        <SingleItem
-          key={idx}
-          title={item.get('title')}
-          url={item.get('url')}
-          langs={getItemLangs(item.get('id'), langs)}
-          score={item.get('score')}
-          time={item.get('time')}
-          stars={item.getIn([ 'github', 'stargazers_count' ])}
-          fullName={item.getIn([ 'github', 'full_name' ])}
-          readmeContent={readmes.getIn([ item.get('id'), 'content' ])}
-        />
-      ))}
+      {itemsToRender.map((item, idx) => {
+        const itemId = item.get('id');
+
+        return (
+          <SingleItem
+            key={idx}
+            title={item.get('title')}
+            url={item.get('url')}
+            langs={getItemLangs(itemId, langs)}
+            score={item.get('score')}
+            time={item.get('time')}
+            stars={item.getIn([ 'github', 'stargazers_count' ])}
+            fullName={item.getIn([ 'github', 'full_name' ])}
+            readmeContent={readmes.get(itemId) ? readmes.getIn([ itemId, 'content' ]) : ''}
+          />
+        );
+      })}
     </div>
   );
 };

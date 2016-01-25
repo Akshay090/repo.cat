@@ -1,17 +1,5 @@
 .root {
-  padding: 1rem 3rem;
-
+  composes: readmeBg from '../../../styles/colors.css';
+  padding: 1rem 2.5rem;
   box-sizing: border-box;
-  * {
-    overflow-x: auto;
-    /* @TODO use github's default style */
-  }
-
-  pre {
-    overflow-x: auto;
-  }
-
-  img {
-    max-width: 100%;
-  }
 }

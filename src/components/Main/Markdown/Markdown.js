@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-
 import marked from 'marked';
+import cx from 'classnames';
+
 import styles from './Markdown.css';
+import gfmStyles from 'github-markdown-css';
 
 export default class Markdown extends Component {
   static propTypes = {
@@ -34,7 +36,7 @@ export default class Markdown extends Component {
     return (
       <article
         style={style}
-        className={styles.root}
+        className={cx(gfmStyles['markdown-body'], styles.root)}
         dangerouslySetInnerHTML={{ __html: marked(data) }}
       />
     );
