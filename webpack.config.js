@@ -1,11 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
-const env = process.env.NODE_ENV || 'development';
-const isDev = env === 'development';
+const env = JSON.stringify(process.env.NODE_ENV || 'development');
+const isDev = env === '"development"';
 
 const defineConstPlugin = new webpack.DefinePlugin({
   __DEV__: isDev,
+  'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
 });
 
 module.exports = {

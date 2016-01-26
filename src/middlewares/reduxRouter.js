@@ -1,5 +1,5 @@
 import { browserHistory } from 'react-router';
-import { syncHistory } from 'redux-simple-router';
+import { syncHistory } from 'react-router-redux';
 
 const reduxRouter = syncHistory(browserHistory);
 

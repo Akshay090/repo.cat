@@ -26,7 +26,7 @@ const ItemList = ({ itemData, filterStatus, langs, readmes }) => {
 
   return (
     <div>
-      {itemsToRender.map((item, idx) => {
+      {itemsToRender && itemsToRender.valueSeq().map((item, idx) => {
         const itemId = item.get('id');
 
         return (
