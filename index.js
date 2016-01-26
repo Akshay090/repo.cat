@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const IPAddress = '0.0.0.0';
-const PORT = JSON.parse(process.env.EXPRESS_PORT || 5000);
+const PORT = JSON.parse(process.env.PORT || 5000);
 const ROOT_PATH = `${__dirname}/dist`;
 
 app.use(express.static(ROOT_PATH));
