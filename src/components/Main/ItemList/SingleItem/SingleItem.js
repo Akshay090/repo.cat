@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Motion, spring } from 'react-motion';
+import { Motion, spring, presets } from 'react-motion';
 import { unix } from 'moment';
 
 import Markdown from '../../Markdown';
@@ -82,7 +82,7 @@ export default class SingleItem extends Component {
             </p>
           </div>
         </div>
-        <Motion style={{ show: spring(this.state.isOpen ? 1 : 0) }}>
+        <Motion style={{ show: spring(this.state.isOpen ? 1 : 0, presets.noWobble) }}>
         {({ show }) => show === 0 || !gfmHtml || gfmHtml === '' ?
               null : // dont render unnecessary stuff
             <Markdown
