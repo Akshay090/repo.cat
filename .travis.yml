@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-  - 5.4.1
+- 5.5.0
 compiler: clang-3.6
 env:
-  - CXX=clang-3.6
+- CXX=clang-3.6
 addons:
   apt:
     sources:
@@ -12,3 +12,10 @@ addons:
     packages:
     - clang-3.6
     - g++-4.8
+deploy:
+  provider: heroku
+  api_key:
+    secure: imSpFa5mLmpziL8Of1gkVLYtgJqqJmScAEJUron8Q+whZVkJuSq225Zdq1uSRbJ96ur1JH0X2q0ZKU5mQQ1jHQ3682ji0KvoXvglLUn8ekONHeaMk+08ULinwYZO+8KiJzipu0YxL8fOaWirLCdN9DYXUdPK7F3HLK8Obszswghf04uFDo0dkfsPJYd5fqZ1gmgERABvHhMYC7P4MTAdhBYdDI5/Jp8+8t0LBelf59VQ3dcijrSodbG6Ueoq/qlkqM8YCPmwT6mOQwSZBbEYdBArgSuylQZBEF4IzdFeZ6EP28We9V0VwRWKo8w4jacvw0wUV3bcXPoUj8kp1OhSZKfXjzrigFF9U+MXPl88aKKZAvsr8R2hn8PIaPwxRdu26d7QDzFxRIOY1Pq4N9CsA90EKK3vvy9BWK1NHAsURg8uig2l3wHYgf32o9DM6Rm+UOpFKf0/w/2N2vVOH34gwLOnwW/um4QONLpd3UyvYzQUHlGToHR3GZLBVsn2dMnYEvwiXz8WF5HlaJfzZqF4peEXvZrRvB79pM22SctMq/0sgHa4keKuDsV6FIDNFKnFM7F4TpnYdgO7PPQpUQFKZK9Qjnv8fv1Rp+S3E4yOjRHohlE/rto/UAh/SyQNcxXwcR2VOlZByWaSztLEd8y8DG2IGvLIj+t7+xkBEN2MN3Y=
+  app: repo-cat
+  on:
+    repo: keyanzhang/repo.cat
