@@ -5,6 +5,7 @@ import { arrayPop } from '../../lib';
 
 import Filters from './Filters';
 import ItemList from './ItemList';
+import Spinner from '../Spinner';
 
 import styles from './Main.css';
 
@@ -27,7 +28,7 @@ class Main extends Component { // @TODO use PureComponent
   };
 
   state = {
-    showFilter: true,
+    showFilter: false,
   };
 
   componentDidMount() {
@@ -87,13 +88,16 @@ class Main extends Component { // @TODO use PureComponent
 
     return (
       <div className={styles.root}>
-        <Filters
-          langSet={langSet}
-          showFilter={this.state.showFilter}
-          filterStatus={validFilterStatus}
-          handleHideFilterClick={this.handleHideFilterClick}
-          getDestination={this.getDestination(location.pathname, validFilterStatus)}
-        />
+        {
+          !langSet.count() ? <Spinner /> :
+            <Filters
+              langSet={langSet}
+              showFilter={this.state.showFilter}
+              filterStatus={validFilterStatus}
+              handleHideFilterClick={this.handleHideFilterClick}
+              getDestination={this.getDestination(location.pathname, validFilterStatus)}
+            />
+        }
         <ItemList
           itemData={itemData}
           filterStatus={validFilterStatus}

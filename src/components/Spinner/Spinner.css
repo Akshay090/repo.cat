@@ -1,0 +1,52 @@
+/* taken from https://github.com/tobiasahlin/SpinKit */
+
+/*
+  Usage:
+
+  <div class="chasingDots">
+    <div class="dotsChild dot1"></div>
+    <div class="dotsChild dot2"></div>
+  </div>
+ */
+
+.chasingDots {
+  margin: 12rem auto;
+  width: 2rem;
+  height: 2rem;
+  position: relative;
+  text-align: center;
+  animation: chasingDotsRotate 2s infinite linear;
+}
+
+.chasingDots .dotsChild {
+  width: 60%;
+  height: 60%;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  background-color: #2f302c; /* same as the text */
+  border-radius: 100%;
+  animation: chasingDotsBounce 2s infinite ease-in-out;
+}
+
+.chasingDots .dot2 {
+  top: auto;
+  bottom: 0;
+  animation-delay: -1s;
+}
+
+@keyframes chasingDotsRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes chasingDotsBounce {
+  0%, 100% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+}
