@@ -7,6 +7,7 @@
 
 import { Map as iMap, fromJS } from 'immutable';
 import { Base64 } from 'js-base64';
+import marked from 'marked';
 
 import {
   HN_TOP_DATA,
@@ -17,6 +18,17 @@ import {
 } from '../constants';
 
 const initialDataState = iMap();
+
+marked.setOptions({
+  renderer: new marked.Renderer(),
+  gfm: true,
+  tables: true,
+  breaks: false,
+  pedantic: false,
+  sanitize: true,
+  smartLists: true,
+  smartypants: false,
+});
 
 const readmesReducer = (state = initialDataState, action) => {
   switch (action.type) {
@@ -43,6 +55,7 @@ const readmesReducer = (state = initialDataState, action) => {
             mutMap.set(id, fromJS({
               ...readmeObj,
               content: textContent,
+              gfmHtml: marked(textContent),
             }));
           }
         });

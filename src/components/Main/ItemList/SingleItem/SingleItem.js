@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { Motion, spring } from 'react-motion';
-import moment from 'moment';
+import { unix } from 'moment';
 
 import Markdown from '../../Markdown';
 
@@ -17,7 +17,7 @@ export default class SingleItem extends Component {
     time: PropTypes.number.isRequired,
     stars: PropTypes.number.isRequired,
     fullName: PropTypes.string.isRequired,
-    readmeContent: PropTypes.string,
+    gfmHtml: PropTypes.string.isRequired,
   };
 
   state = {
@@ -59,7 +59,7 @@ export default class SingleItem extends Component {
   };
 
   render() {
-    const { title, url, langs, score, time, stars, fullName, readmeContent } = this.props;
+    const { title, url, langs, score, time, stars, fullName, gfmHtml } = this.props;
 
     return (
       <div>
@@ -77,20 +77,18 @@ export default class SingleItem extends Component {
             </h2>
             <p className={styles.info}>
               <a href={url}><span>★ {stars}</span></a>|
-              <a href={url}><span>{moment.unix(time).fromNow()}</span></a>|
+              <a href={url}><span>{unix(time).fromNow()}</span></a>|
               { langs ? <span>{langs.join(', ')}</span> : '...'}
             </p>
           </div>
         </div>
         <Motion style={{ show: spring(this.state.isOpen ? 1 : 0) }}>
-          {
-            ({ show }) => !readmeContent || readmeContent === '' ?
-              null :
-              <Markdown
-                data={readmeContent}
-                style={this.getStyle(show)}
-              />
-          }
+        {({ show }) => show === 0 || !gfmHtml || gfmHtml === '' ?
+              null : // dont render unnecessary stuff
+            <Markdown
+              gfmHtml={gfmHtml}
+              style={this.getStyle(show)}
+            />}
         </Motion>
       </div>
     );

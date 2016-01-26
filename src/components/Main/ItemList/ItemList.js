@@ -39,7 +39,7 @@ const ItemList = ({ itemData, filterStatus, langs, readmes }) => {
             time={item.get('time')}
             stars={item.getIn([ 'github', 'stargazers_count' ])}
             fullName={item.getIn([ 'github', 'full_name' ])}
-            readmeContent={readmes.get(itemId) ? readmes.getIn([ itemId, 'content' ]) : ''}
+            gfmHtml={readmes.get(itemId) ? readmes.getIn([ itemId, 'gfmHtml' ]) || '' : ''}
           />
         );
       })}
