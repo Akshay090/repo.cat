@@ -1,9 +1,7 @@
 const express = require('express');
-const ip = require('ip');
-
 const app = express();
 
-const IPAddress = process.env.EXPRESS_IP || ip.address();
+const IPAddress = '0.0.0.0';
 const PORT = JSON.parse(process.env.EXPRESS_PORT || 5000);
 const ROOT_PATH = `${__dirname}/dist`;
 
