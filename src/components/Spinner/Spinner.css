@@ -9,11 +9,16 @@
   </div>
  */
 
+.root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
 .chasingDots {
-  margin: 12rem auto;
   width: 2rem;
   height: 2rem;
-  position: relative;
   text-align: center;
   animation: chasingDotsRotate 2s infinite linear;
 }

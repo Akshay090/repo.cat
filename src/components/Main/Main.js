@@ -88,22 +88,22 @@ class Main extends Component { // @TODO use PureComponent
 
     return (
       <div className={styles.root}>
-        {
-          !langSet.count() ? <Spinner /> :
-            <Filters
-              langSet={langSet}
-              showFilter={this.state.showFilter}
-              filterStatus={validFilterStatus}
-              handleHideFilterClick={this.handleHideFilterClick}
-              getDestination={this.getDestination(location.pathname, validFilterStatus)}
-            />
-        }
-        <ItemList
-          itemData={itemData}
+        <Filters
+          langSet={langSet}
+          showFilter={this.state.showFilter}
           filterStatus={validFilterStatus}
-          langs={langs}
-          readmes={readmes}
+          handleHideFilterClick={this.handleHideFilterClick}
+          getDestination={this.getDestination(location.pathname, validFilterStatus)}
         />
+        {
+          !itemData.count() ? <Spinner /> :
+          <ItemList
+            itemData={itemData}
+            filterStatus={validFilterStatus}
+            langs={langs}
+            readmes={readmes}
+          />
+        }
       </div>
     );
   }
