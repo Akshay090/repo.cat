@@ -27,17 +27,15 @@ module.exports = {
     publicPath: '/static/',
   },
 
-  plugins: isDev ? [
-    defineConstPlugin,
+  plugins: [ defineConstPlugin ].concat(isDev ? [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ] : [
-    defineConstPlugin,
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compressor: { warnings: false },
     }),
-  ],
+  ]),
 
   module: {
     loaders: [{
