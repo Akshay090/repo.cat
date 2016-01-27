@@ -1,11 +1,14 @@
 const rollbar = require('rollbar');
 const express = require('express');
+const compression = require('compression');
 
 const app = express();
 
 const IPAddress = '0.0.0.0';
 const PORT = JSON.parse(process.env.PORT || 5000);
 const ROOT_PATH = `${__dirname}/dist`;
+
+app.use(compression());
 
 app.use(express.static(ROOT_PATH));
 
