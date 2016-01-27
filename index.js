@@ -1,4 +1,6 @@
+const rollbar = require('rollbar');
 const express = require('express');
+
 const app = express();
 
 const IPAddress = '0.0.0.0';
@@ -10,6 +12,11 @@ app.use(express.static(ROOT_PATH));
 app.get('*', (req, res) => {
   res.sendFile('index.html', { root: ROOT_PATH });
 });
+
+app.use(rollbar.errorHandler('13b7c2facd104874ac16204769da9c0b', {
+  environment: 'production',
+  exitOnUncaughtException: true,
+}));
 
 app.listen(PORT, IPAddress, (err) => {
   if (err) {
