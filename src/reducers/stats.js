@@ -11,6 +11,7 @@ import { flatMap } from '../lib';
 
 import {
   REPO_LANGS,
+  REPO_LANG,
 //  FETCH_PENDING,
 } from '../constants';
 
@@ -22,15 +23,25 @@ const initialDataState = iMap({
 
 const langsReducer = (state = initialDataState, action) => {
   switch (action.type) {
-    case REPO_LANGS:
-      const { category, langs } = action.payload;
+    case REPO_LANG:
+      const { category, data } = action.payload;
 
-      const langSeq = flatMap(
-        langs.map((payload) => payload.langs),
-        Object.keys,
+      const langs = Object.keys(data);
+
+      return state.updateIn(
+        [ category ],
+        (set) => set.union(langs),
       );
 
-      return state.set(category, iOrderedSet(langSeq));
+    // case REPO_LANGS:
+    //   const { category, langs } = action.payload;
+    //
+    //   const langSeq = flatMap(
+    //     langs.map((payload) => payload.langs),
+    //     Object.keys,
+    //   );
+    //
+    //   return state.set(category, iOrderedSet(langSeq));
     default:
       return state;
   }

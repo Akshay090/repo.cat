@@ -6,7 +6,7 @@ import SingleItem from './SingleItem';
 
 const getItemLangs = (id, langs) => {
   const res = langs.get(id);
-  if (res === FETCH_PENDING) {
+  if (!res) {
     return undefined;
   }
   return res.keySeq().toArray();
@@ -15,7 +15,8 @@ const getItemLangs = (id, langs) => {
 const ItemList = ({ itemData, filterStatus, langs, readmes }) => {
   const itemsToRender = itemData.filter((item) => {
     const currentLangs = langs.get(item.get('id'));
-    if (currentLangs === FETCH_PENDING ||
+
+    if (!currentLangs ||
         (currentLangs.count() === 0 && filterStatus.length === 0) ||
         filterStatus.length === 0) {
       return true;

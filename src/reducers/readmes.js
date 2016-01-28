@@ -13,6 +13,7 @@ import {
   HN_ITEMS_DATA,
   REPO_READMES,
   FETCH_PENDING,
+  REPO_README,
 } from '../constants';
 
 const initialDataState = iMap();
@@ -30,32 +31,19 @@ marked.setOptions({
 
 const readmesReducer = (state = initialDataState, action) => {
   switch (action.type) {
-    case HN_ITEMS_DATA:
-      const { repoData } = action.payload;
-      return state.withMutations((mutMap) => {
-        repoData.forEach(({ id }) => {
-          if (typeof mutMap.get(id) === 'undefined') {
-            mutMap.set(id, FETCH_PENDING);
-          }
-        });
-      });
+    case REPO_README:
+      const { id, data } = action.payload;
+      if (!data || typeof data.content !== 'string') {
+        return state.set(id, false);
+      }
 
-    case REPO_READMES:
-      const { readmes } = action.payload;
-      return state.withMutations((mutMap) => {
-        readmes.forEach(({ id, readme: readmeObj }) => {
-          if (!readmeObj || typeof readmeObj.content !== 'string') {
-            mutMap.set(id, false);
-          } else {
-            const textContent = Base64.decode(readmeObj.content);
-            mutMap.set(id, fromJS({
-              ...readmeObj,
-              content: textContent,
-              gfmHtml: marked(textContent),
-            }));
-          }
-        });
-      });
+      const textContent = Base64.decode(data.content);
+      return state.set(id, fromJS({
+        ...data,
+        content: textContent,
+        gfmHtml: marked(textContent),
+      }));
+
     default:
       return state;
   }
