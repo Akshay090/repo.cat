@@ -8,9 +8,7 @@
 import { Map as iMap, fromJS } from 'immutable';
 
 import {
-  HN_TOP_DATA,
-  HN_NEW_DATA,
-  HN_SHOW_DATA,
+  HN_ITEMS_DATA,
   REPO_LANGS,
   FETCH_PENDING,
 } from '../constants';
@@ -19,9 +17,7 @@ const initialDataState = iMap();
 
 const langsReducer = (state = initialDataState, action) => {
   switch (action.type) {
-    case HN_TOP_DATA:
-    case HN_NEW_DATA:
-    case HN_SHOW_DATA:
+    case HN_ITEMS_DATA:
       const { repoData } = action.payload;
       return state.withMutations((mutMap) => {
         repoData.forEach(({ id }) => {

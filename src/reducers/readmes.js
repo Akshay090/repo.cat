@@ -10,9 +10,7 @@ import { Base64 } from 'js-base64';
 import marked from 'marked';
 
 import {
-  HN_TOP_DATA,
-  HN_NEW_DATA,
-  HN_SHOW_DATA,
+  HN_ITEMS_DATA,
   REPO_READMES,
   FETCH_PENDING,
 } from '../constants';
@@ -32,9 +30,7 @@ marked.setOptions({
 
 const readmesReducer = (state = initialDataState, action) => {
   switch (action.type) {
-    case HN_TOP_DATA:
-    case HN_NEW_DATA:
-    case HN_SHOW_DATA:
+    case HN_ITEMS_DATA:
       const { repoData } = action.payload;
       return state.withMutations((mutMap) => {
         repoData.forEach(({ id }) => {

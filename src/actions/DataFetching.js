@@ -8,8 +8,8 @@ import {
 } from '../apis';
 
 import {
-  typeToActionMap,
   typeToHNTypeMap,
+  HN_ITEMS_DATA,
   REPO_LANGS,
   REPO_READMES,
 } from '../constants';
@@ -76,8 +76,9 @@ const asyncGetRepoInfo = async (type) => {
 export const loadAllForType = (type) => () => async (dispatch) => {
   const { repoData, rawItemCount } = await asyncGetRepoInfo(type);
   dispatch({
-    type: typeToActionMap[type],
+    type: HN_ITEMS_DATA,
     payload: {
+      category: type,
       repoData,
       rawItemCount,
     },
