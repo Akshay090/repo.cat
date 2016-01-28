@@ -28,8 +28,8 @@ const dataReducer = (state = initialDataState, action) => {
     case REPO_INFO: {
       const { category, id, data } = action.payload;
       return state.updateIn(
-        [ category ], // @FIXME merge stuff
-        (ordMap) => data ? ordMap.mergeIn([ id ], fromJS(data)) : ordMap.remove(id),
+        [ category ],
+        (ordMap) => data ? ordMap.mergeIn([ id, 'github' ], fromJS(data)) : ordMap.remove(id),
       );
     }
 

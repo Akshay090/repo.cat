@@ -1,6 +1,6 @@
 /*
   for an url (id), it's either
-  - `FETCH_PENDING` for waiting for data
+  - `undefined` for waiting for data
   - `false` for no readme info
   - or a readme object lake `{ content: 2212 }`
 */
@@ -10,9 +10,6 @@ import { Base64 } from 'js-base64';
 import marked from 'marked';
 
 import {
-  HN_ITEMS_DATA,
-  REPO_READMES,
-  FETCH_PENDING,
   REPO_README,
 } from '../constants';
 

@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { map } from 'react-immutable-proptypes';
 
-import { FETCH_PENDING } from '../../../constants';
 import SingleItem from './SingleItem';
 
 const getItemLangs = (id, langs) => {
@@ -38,8 +37,8 @@ const ItemList = ({ itemData, filterStatus, langs, readmes }) => {
             langs={getItemLangs(itemId, langs)}
             score={item.get('score')}
             time={item.get('time')}
-            stars={item.getIn([ 'github', 'stargazers_count' ])}
-            fullName={item.getIn([ 'github', 'full_name' ])}
+            stars={item.getIn([ 'github', 'stargazers_count' ]) || -1}
+            fullName={item.getIn([ 'github', 'full_name' ]) || '...'}
             gfmHtml={readmes.get(itemId) ? readmes.getIn([ itemId, 'gfmHtml' ]) || '' : ''}
           />
         );

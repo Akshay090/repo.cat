@@ -7,12 +7,8 @@ import {
   OrderedSet as iOrderedSet,
 } from 'immutable';
 
-import { flatMap } from '../lib';
-
 import {
-  REPO_LANGS,
   REPO_LANG,
-//  FETCH_PENDING,
 } from '../constants';
 
 const initialDataState = iMap({
@@ -26,22 +22,12 @@ const langsReducer = (state = initialDataState, action) => {
     case REPO_LANG:
       const { category, data } = action.payload;
 
-      const langs = Object.keys(data);
+      const langs = Object.keys(data); // @TODO keep the order of the set
 
       return state.updateIn(
         [ category ],
         (set) => set.union(langs),
       );
-
-    // case REPO_LANGS:
-    //   const { category, langs } = action.payload;
-    //
-    //   const langSeq = flatMap(
-    //     langs.map((payload) => payload.langs),
-    //     Object.keys,
-    //   );
-    //
-    //   return state.set(category, iOrderedSet(langSeq));
     default:
       return state;
   }

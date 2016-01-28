@@ -1,6 +1,6 @@
 /*
   for an url (id), it's either
-  - `FETCH_PENDING` for waiting for data
+  - `undefined` for waiting for data
   - an empty object for no language info
   - or a lang object lake `{ python: 2212 }`
 */
