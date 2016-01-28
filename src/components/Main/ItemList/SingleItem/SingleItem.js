@@ -76,7 +76,7 @@ export default class SingleItem extends Component {
               <span className={styles.fullName}>({fullName})</span>
             </h2>
             <p className={styles.info}>
-              <a href={url}><span>★ {stars}</span></a>|
+              <a href={url}><span>★ {stars === -1 ? '...' : stars}</span></a>|
               <a href={url}><span>{unix(time).fromNow()}</span></a>|
               { langs ? <span>{langs.join(', ')}</span> : '...'}
             </p>

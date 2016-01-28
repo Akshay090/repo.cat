@@ -5,10 +5,8 @@ import {
 } from 'immutable';
 
 import {
-  HN_TOP_DATA,
-  HN_NEW_DATA,
-  HN_SHOW_DATA,
-  actionToTypeMap,
+  POSSIBLE_REPO,
+  REPO_INFO,
 } from '../constants';
 
 const initialDataState = iMap({
@@ -19,19 +17,21 @@ const initialDataState = iMap({
 
 const dataReducer = (state = initialDataState, action) => {
   switch (action.type) {
-    case HN_TOP_DATA:
-    case HN_NEW_DATA:
-    case HN_SHOW_DATA:
-      const { repoData } = action.payload;
+    case POSSIBLE_REPO: { // block scope
+      const { category, id, data } = action.payload;
       return state.updateIn(
-        [ actionToTypeMap[action.type] ],
-        (ordMap) => ordMap.withMutations((oMutMap) => {
-          // make it clear that this is set effect only
-          repoData.forEach((obj) => {
-            oMutMap.set(obj.id, fromJS(obj));
-          });
-        }),
+        [ category ],
+        (ordMap) => ordMap.set(id, fromJS(data)),
       );
+    }
+
+    case REPO_INFO: {
+      const { category, id, data } = action.payload;
+      return state.updateIn(
+        [ category ],
+        (ordMap) => data ? ordMap.mergeIn([ id, 'github' ], fromJS(data)) : ordMap.remove(id),
+      );
+    }
 
     default:
       return state;
