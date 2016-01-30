@@ -33,14 +33,17 @@
   transform: scaleY(-1);
 }
 
-.allFilters {
+.filterCommon {
   display: flex;
+}
+
+.allFilters {
   flex-wrap: wrap;
   justify-content: space-around;
 }
 
 .hideFilters {
-  display: flex;
+  flex-wrap: nowrap;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
 }

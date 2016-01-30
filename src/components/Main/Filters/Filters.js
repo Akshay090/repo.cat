@@ -17,7 +17,12 @@ const Filters = ({ langSet, showFilter, filterStatus, handleHideFilterClick, get
         />
       </div>
     }
-    <div className={showFilter ? styles.allFilters : styles.hideFilters}>
+    <div
+      className={cx([
+        styles.filterCommon,
+        showFilter ? styles.allFilters : styles.hideFilters,
+      ])}
+    >
       {langSet.map((lang, idx) => (
         <SingleFilter
           selected={!!filterStatus.includes(lang)}
