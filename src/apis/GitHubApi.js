@@ -11,21 +11,27 @@ const resToJson = (res) => res.ok ? res.json() : {
 };
 
 export const gitHubUrlParser = (urlStr) => {
-  const re = /^https?:\/\/(github.com\/([^\/]+)\/([^\/#?]+)|([^\/]+).github.io\/([^\/#?]+))/; // i dont want #, ?
+  const re = /^https?:\/\/(github\.com\/([^\/]+)|([^\/]+)\.github\.io)\/([^\/#?\s]+)/; // remove #, ?, .git suffix
   const resultArr = urlStr.match(re);
-  if (resultArr && resultArr[4]) {  // [4].github.io/[5]
-    return {
-      by: resultArr[4],
-      name: resultArr[5],
-    };
-  } else if (resultArr && resultArr[2]) { // github.com/[2]/[3]
-    return {
-      by: resultArr[2],
-      name: resultArr[3],
-    };
+
+  if (!resultArr) {
+    return false;
   }
 
-  return false;
+  //    [0,1,     2,    3,    4 ] oh this destructuring is actually not that readable
+  const [ , , byCom, byIo, name ] = resultArr;
+
+  if (resultArr && byIo && name) {  // ${byIo}.github.io/${name}
+    return {
+      by: byIo,
+      name,
+    };
+  } else if (resultArr && byCom && name) { // github.com/${byCom}/${name}
+    return {
+      by: byCom,
+      name: name.endsWith('.git') ? name.substring(0, name.length - 4) : name,
+    };
+  }
 };
 
 // the fetch methods _only_ throw when there's a network error.

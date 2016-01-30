@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "lint": "eslint src test",
-    "test": "NODE_ENV=test mocha --harmony-proxies",
+    "test": "NODE_ENV=test mocha",
     "test:watch": "npm test -- --watch",
     "build:webpack": "NODE_ENV=production webpack",
     "build": "npm run clean && npm run lint && npm test && npm run build:webpack && cp index.html ./dist/index.html",
@@ -47,7 +47,6 @@
     "expect": "^1.13.4",
     "express": "^4.13.4",
     "file-loader": "^0.8.5",
-    "harmony-reflect": "^1.4.2",
     "jsdom": "^8.0.0",
     "keypress": "^0.2.1",
     "mocha": "^2.4.1",
