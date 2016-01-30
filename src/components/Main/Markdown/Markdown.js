@@ -1,10 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import cx from 'classnames';
+import PureComponent from '../../PureComponent';
 
 import styles from './Markdown.css';
 import gfmStyles from 'github-markdown-css';
 
-export default class Markdown extends Component {
+export default class Markdown extends PureComponent {
   static propTypes = {
     gfmHtml: PropTypes.string.isRequired,
     style: PropTypes.object.isRequired,
