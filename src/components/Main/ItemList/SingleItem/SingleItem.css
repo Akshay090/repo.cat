@@ -4,6 +4,11 @@
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
+  position: relative;
+}
+
+.root:hover > .buttonCommon {
+  display: block;
 }
 
 .title {
@@ -48,4 +53,29 @@
 
 .info > *:first-child {
   padding-left: 0;
+}
+
+.buttonCommon {
+  transition: all 0.3s ease;
+
+  display: none;
+  position: absolute;
+  height: 14px;
+  min-width: 42px;
+  right: 2%;
+  font-size: 10px;
+  color: rgb(254, 251, 246); /* same as README bg */
+  padding: 2px 3px;
+  background-color: rgba(125, 124, 121, 0.5); /* gray from colors.css + transparency */
+  text-align: center;
+}
+
+.expand {
+  bottom: -18px;
+  border-radius: 0 0 8px 8px;
+}
+
+.collapse {
+  bottom: 0px;
+  border-radius: 8px 8px 0 0;
 }

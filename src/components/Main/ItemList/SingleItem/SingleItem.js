@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Motion, spring, presets } from 'react-motion';
 import { unix } from 'moment';
+import cx from 'classnames';
 
 import Markdown from '../../Markdown';
 
@@ -60,7 +61,7 @@ export default class SingleItem extends Component {
 
   render() {
     const { title, url, langs, score, time, stars, fullName, gfmHtml } = this.props;
-
+    const { isOpen } = this.state;
     return (
       <div>
         <div
@@ -81,8 +82,16 @@ export default class SingleItem extends Component {
               { langs ? <span>{langs.join(', ')}</span> : '...'}
             </p>
           </div>
+          <div
+            className={cx([
+              styles.buttonCommon,
+              isOpen ? styles.collapse : styles.expand,
+            ])}
+          >
+            { isOpen ? 'collapse' : 'expand' }
+          </div>
         </div>
-        <Motion style={{ show: spring(this.state.isOpen ? 1 : 0, presets.noWobble) }}>
+        <Motion style={{ show: spring(isOpen ? 1 : 0, presets.noWobble) }}>
         {({ show }) => show === 0 || !gfmHtml || gfmHtml === '' ?
               null : // dont render unnecessary stuff
             <Markdown
