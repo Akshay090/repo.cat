@@ -1,6 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 import { map } from 'react-immutable-proptypes';
-
+import PureComponent from '../PureComponent';
 import { arrayPop } from '../../lib';
 
 import Filters from './Filters';
@@ -11,7 +11,7 @@ import styles from './Main.css';
 
 import topConnector from './topConnector';
 
-class Main extends Component { // @TODO use PureComponent
+class Main extends PureComponent { // routing object is safe (it changes)
   static propTypes = {
     data: map.isRequired,
     stats: map.isRequired,
