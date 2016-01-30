@@ -1,7 +1,10 @@
 import React, { PropTypes } from 'react';
 import { orderedSet } from 'react-immutable-proptypes';
-import styles from './Filters.css';
+
 import SingleFilter from './SingleFilter';
+
+import cx from 'classnames';
+import styles from './Filters.css';
 
 const Filters = ({ langSet, showFilter, filterStatus, handleHideFilterClick, getDestination }) => (
   <div className={styles.root}>
@@ -9,7 +12,7 @@ const Filters = ({ langSet, showFilter, filterStatus, handleHideFilterClick, get
       !langSet.count() ? null :
       <div className={styles.control}>
         <div
-          className={showFilter ? styles.upArrow : styles.downArrow}
+          className={cx([ styles.arrowCommon, showFilter ? styles.upArrow : styles.downArrow ])}
           onClick={handleHideFilterClick}
         />
       </div>
