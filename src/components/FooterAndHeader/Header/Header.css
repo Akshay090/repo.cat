@@ -27,12 +27,31 @@
   text-decoration: none;
 }
 
-.logoText {
-  composes: mono from '../../../styles/typography.css';
-  transition: transform 2s ease;
+.logoTransit {
+  transition: transform 1s ease;
 }
 
-.logoText:hover {
-  transform: scale(1.1);
+.logoTransit:hover {
+  transform: scale(1.2);
   transform-origin: center center;
+}
+
+.repo {
+  background-image: url("../../../../assets/repo.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 34px;
+  height: 12px;
+  margin-right: 2px;
+  margin-top: 5px;
+}
+
+.cat {
+  background-image: url("../../../../assets/cat.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
 }

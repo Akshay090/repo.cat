@@ -1,8 +1,8 @@
 .root {
   composes: black from '../../styles/colors.css';
+  composes: main from '../../styles/typography.css';
   width: 80vw;
   margin: 0 auto;
-  font-family: Avenir, Helvetica Neue, Arial, sans-serif;
   font-size: 16px;
 }
 

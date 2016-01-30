@@ -12,14 +12,18 @@ const headerItems = [
   { text: 'new', linkTo: '/new' },
   { text: 'show', linkTo: '/show' },
 ];
-
 const Header = ({ query }) => (
   <header className={styles.root}>
     <IndexLink
       to="/"
       className={cx(styles.logoContainer, commonStyles.resetA)}
     >
-      <span className={styles.logoText}>repo.cat</span>
+      <div
+        className={styles.repo}
+      />
+      <div
+        className={cx(styles.logoTransit, styles.cat)}
+      />
     </IndexLink>
     <div className={commonStyles.navsContainer}>
       {
