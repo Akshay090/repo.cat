@@ -33,7 +33,11 @@ module.exports = {
   ] : [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: { warnings: false },
+      compressor: {
+        warnings: false,
+        pure_getters: true,
+        screw_ie8: true,
+      },
     }),
   ]),
 
