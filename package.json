@@ -1,6 +1,6 @@
 {
   "name": "repo.cat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GitHub repos on Hacker News.",
   "main": "index.js",
   "scripts": {
