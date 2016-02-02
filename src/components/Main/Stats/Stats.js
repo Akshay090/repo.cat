@@ -1,3 +1,5 @@
+/* eslint-disable max-len */
+
 import React, { PropTypes } from 'react';
 
 import styles from './Stats.css';
@@ -8,7 +10,7 @@ const Stats = ({ selectedLangs, hnCount, ghCount, currentCount, type }) => {
 
   return (
     <div className={styles.root}>
-      <p>Found {ghCount} GitHub repos in {hnCount} HN {capitalizeFirstLetter(type)} items.</p>
+      <p>Found {ghCount} GitHub repos in {hnCount} Hacker News {capitalizeFirstLetter(type)} items.</p>
       <p>
         {
           currentCount === ghCount ? 'You have no filter selected.' :

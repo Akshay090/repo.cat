@@ -101,28 +101,32 @@ class Main extends PureComponent { // routing object is safe (it changes)
 
     return (
       <div className={styles.root}>
-        <Filters
-          langSet={langSet}
-          showFilter={this.state.showFilter}
-          filterStatus={validFilterStatus}
-          handleHideFilterClick={this.handleHideFilterClick}
-          getDestination={this.getDestination(location.pathname, validFilterStatus)}
-        />
         {
-          !itemData.count() ? <Spinner /> :
-          <ItemList
-            itemsToRender={itemsToRender}
-            langs={langs}
-            readmes={readmes}
-          />
+          !itemData.count() ? <Spinner /> : [ // ahh keys. do keys affect performance?
+            <Filters
+              key={0}
+              langSet={langSet}
+              showFilter={this.state.showFilter}
+              filterStatus={validFilterStatus}
+              handleHideFilterClick={this.handleHideFilterClick}
+              getDestination={this.getDestination(location.pathname, validFilterStatus)}
+            />,
+            <ItemList
+              key={1}
+              itemsToRender={itemsToRender}
+              langs={langs}
+              readmes={readmes}
+            />,
+            <Stats
+              key={2}
+              selectedLangs={validFilterStatus}
+              hnCount={stats.getIn([ 'rawCount', whatAmI ])}
+              ghCount={itemData.count()}
+              currentCount={itemsToRender.count()}
+              type={whatAmI}
+            />,
+          ]
         }
-        <Stats
-          selectedLangs={validFilterStatus}
-          hnCount={stats.getIn([ 'rawCount', whatAmI ])}
-          ghCount={itemData.count()}
-          currentCount={itemsToRender.count()}
-          type={whatAmI}
-        />
       </div>
     );
   }
