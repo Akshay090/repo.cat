@@ -6,17 +6,24 @@
   height: 2em;
   border-radius: 3px;
   box-sizing: border-box;
-  border: 1px solid rgb(248, 245, 240);
+  border: 1px solid rgb(248, 245, 240); /* same as bg. to enable the transition */
   white-space: pre;
   cursor: pointer;
 }
 
 .link:hover {
   text-decoration: none;
-  border: 1px solid rgba(102, 51, 153, 0.1);
-  transition: border 0.2s ease-out;
+  border: 1px solid rebeccapurple;
+  transition: background-color 0.25s ease-in;
+  transition: border-color 0.1s ease;
 }
 
 .selected {
-  border: 1px solid rebeccapurple !important; /* overwrites the hover */
+  color: rgb(248, 245, 240);
+  border: 1px solid rgba(102, 51, 153, 0.1) !important; /* overwrites the hover */
+  background-color: rgba(102, 51, 153, 0.75);
+}
+
+.selected:hover {
+  /* @TODO */
 }
