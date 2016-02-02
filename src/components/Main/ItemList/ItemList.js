@@ -15,6 +15,8 @@ const ItemList = ({ itemsToRender, langs, readmes }) => (
   <div>
     {itemsToRender && itemsToRender.valueSeq().map((item, idx) => {
       const itemId = item.get('id');
+      const starCount = typeof item.getIn([ 'github', 'stargazers_count' ]) === 'undefined' ?
+        -1 : item.getIn([ 'github', 'stargazers_count' ]);
 
       return (
         <SingleItem
@@ -24,7 +26,7 @@ const ItemList = ({ itemsToRender, langs, readmes }) => (
           langs={getItemLangs(itemId, langs)}
           score={item.get('score')}
           time={item.get('time')}
-          stars={item.getIn([ 'github', 'stargazers_count' ]) || -1}
+          stars={starCount}
           fullName={item.getIn([ 'github', 'full_name' ]) || '...'}
           gfmHtml={readmes.get(itemId) ? readmes.getIn([ itemId, 'gfmHtml' ]) || '' : ''}
         />
