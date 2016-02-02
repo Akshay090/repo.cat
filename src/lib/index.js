@@ -41,6 +41,18 @@ export const arrayPop = (array, idx) => {
   return array.slice(0, idx).concat(array.slice(idx + 1));
 };
 
+export const oxfordJoin = (seq = []) => {
+  const len = seq.length;
+
+  if (len <= 2) {
+    return seq.join(' and ');
+  }
+
+  return seq.reduce(
+    (res, str, idx) => idx === len - 1 ? `${res}, and ${str}` : `${res}, ${str}`,
+  );
+};
+
 if (__DEV__) {
   function log(stuff = this) {
     console.log(stuff);
