@@ -49,19 +49,10 @@ export default class SingleItem extends Component {
     });
   };
 
-  renderMarkdown = (data) => {
-    if (!data || data === '') {
-      return null;
-    }
-
-    return (
-      <Markdown data={data} />
-    );
-  };
-
   render() {
     const { title, url, langs, score, time, stars, fullName, gfmHtml } = this.props;
     const { isOpen } = this.state;
+
     return (
       <div>
         <div
@@ -69,7 +60,7 @@ export default class SingleItem extends Component {
           onTouchTap={this.handleToggle}
         >
           <div className={styles.score}>
-            <span> {score} </span>
+            <span>{score}</span>
           </div>
           <div className={styles.content}>
             <h2 className={styles.title}>
@@ -82,18 +73,22 @@ export default class SingleItem extends Component {
               { langs ? <span>{langs.join(', ')}</span> : '...'}
             </p>
           </div>
-          <div role="button" className={styles.button} onTouchTap={this.handleToggle}>
-            <div
-              className={cx(
-                styles.arrowCommon,
-                isOpen ? styles.upArrow : styles.downArrow,
-              )}
-            />
-            { isOpen ? 'collapse' : 'expand' }
-          </div>
+          {
+            !gfmHtml ? null : (
+              <div role="button" className={styles.button} onTouchTap={this.handleToggle}>
+                <div
+                  className={cx(
+                    styles.arrowCommon,
+                    isOpen ? styles.upArrow : styles.downArrow,
+                  )}
+                />
+                { isOpen ? 'collapse' : 'expand' }
+              </div>
+            )
+          }
         </div>
         <Motion style={{ show: spring(isOpen ? 1 : 0, presets.noWobble) }}>
-        {({ show }) => show === 0 || !gfmHtml || gfmHtml === '' ?
+        {({ show }) => show === 0 || !gfmHtml ?
               null : // dont render unnecessary stuff
             <Markdown
               gfmHtml={gfmHtml}
