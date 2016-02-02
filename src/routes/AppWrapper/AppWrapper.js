@@ -3,13 +3,17 @@ import React, { Component, PropTypes } from 'react';
 import styles from './AppWrapper.css';
 
 import { Footer, Header } from '../../components/FooterAndHeader';
-// import Spinner from '../../components/Spinner';
+import { consoleHello } from '../../lib';
 
 export default class AppWrapper extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired,
     location: PropTypes.object.isRequired,
   };
+
+  componentDidMount() {
+    consoleHello();
+  }
 
   render() {
     const { children, location } = this.props;

@@ -1,4 +1,4 @@
-/* eslint-disable no-inner-declarations, no-console */
+/* eslint-disable no-inner-declarations, no-console, max-len */
 
 import invariant from 'invariant';
 
@@ -61,3 +61,14 @@ if (__DEV__) {
 
   window.l = log;
 }
+
+export const consoleHello = () => {
+  console.log(
+    ' ______     ______     ______   ______     ______     ______     ______' + '\n' +
+    '/\\  == \\   /\\  ___\\   /\\  == \\ /\\  __ \\   /\\  ___\\   /\\  __ \\   /\\__  _\\' + '\n' +
+    '\\ \\  __<   \\ \\  __\\   \\ \\  _-/ \\ \\ \\/\\ \\  \\ \\ \\____  \\ \\  __ \\  \\/_/\\ \\/' + '\n' +
+    ' \\ \\_\\ \\_\\  \\ \\_____\\  \\ \\_\\    \\ \\_____\\  \\ \\_____\\  \\ \\_\\ \\_\\    \\ \\_\\' + '\n' +
+    '  \\/_/ /_/   \\/_____/   \\/_/     \\/_____/   \\/_____/   \\/_/\\/_/     \\/_/'
+  );
+  console.log('* Howdy! This is still an early preview. If something just went wrong, would you like to open an issue here? https://github.com/keyanzhang/repo.cat/issues');
+};
