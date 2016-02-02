@@ -82,12 +82,13 @@ export default class SingleItem extends Component {
               { langs ? <span>{langs.join(', ')}</span> : '...'}
             </p>
           </div>
-          <div
-            className={cx([
-              styles.buttonCommon,
-              isOpen ? styles.collapse : styles.expand,
-            ])}
-          >
+          <div role="button" className={styles.button} onTouchTap={this.handleToggle}>
+            <div
+              className={cx(
+                styles.arrowCommon,
+                isOpen ? styles.upArrow : styles.downArrow,
+              )}
+            />
             { isOpen ? 'collapse' : 'expand' }
           </div>
         </div>

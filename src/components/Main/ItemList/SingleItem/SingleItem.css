@@ -7,8 +7,10 @@
   position: relative;
 }
 
-.root:hover > .buttonCommon {
-  display: block;
+.root:hover > .button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title {
@@ -55,27 +57,40 @@
   padding-left: 0;
 }
 
-.buttonCommon {
+.button {
   transition: all 0.3s ease;
-
   display: none;
+  user-select: none;
+  cursor: default;
   position: absolute;
-  height: 14px;
-  min-width: 42px;
-  right: 2%;
-  font-size: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 0.875rem;
+  min-width: 3rem;
+  right: 3%;
+  font-size: 0.625rem;
   color: rgb(254, 251, 246); /* same as README bg */
-  padding: 2px 3px;
+  padding: 2px 4px;
   background-color: rgba(125, 124, 121, 0.5); /* gray from colors.css + transparency */
-  text-align: center;
+  border-radius: 4px 4px 4px 4px;
 }
 
-.expand {
-  bottom: -18px;
-  border-radius: 0 0 8px 8px;
+.arrowCommon {
+  transition: transform 0.4s ease-out;
+  width: 0;
+  height: 0;
+  border-left: 0.35rem solid transparent;
+  border-right: 0.35rem solid transparent;
+  border-top: 0.35rem solid rgb(254, 251, 246);
+  border-bottom: none;
+  margin-top: 1px; /* baseline alignment */
 }
 
-.collapse {
-  bottom: 0px;
-  border-radius: 8px 8px 0 0;
+.downArrow {
+  transform: scaleY(1);
+}
+
+.upArrow {
+  transform: scaleY(-1);
 }
