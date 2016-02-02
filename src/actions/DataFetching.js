@@ -26,6 +26,7 @@ import {
 
 import {
   typeToHNTypeMap,
+  HN_RAW_COUNT,
   POSSIBLE_REPO,
   REPO_INFO,
   REPO_LANG,
@@ -92,6 +93,14 @@ const fetchReadmeInfo = async (id, slugObj) => {
 
 export const loadAllForType = (type) => () => async (dispatch) => {
   const topStoryIds = await fetchHNItems(typeToHNTypeMap[type]); // [ 9127232, 9128437, ... ]
+
+  dispatch({
+    type: HN_RAW_COUNT,
+    payload: {
+      category: type,
+      count: topStoryIds.length,
+    },
+  });
 
   Promise.all(topStoryIds.map((id) => new Promise(async () => {
     const rawHNData = await fetchHNItemById('item', id); // @TODO keep this length

@@ -4,6 +4,7 @@ import PureComponent from '../PureComponent';
 import { arrayPop } from '../../lib';
 
 import Filters from './Filters';
+import Stats from './Stats';
 import ItemList from './ItemList';
 import Spinner from '../Spinner';
 
@@ -86,6 +87,18 @@ class Main extends PureComponent { // routing object is safe (it changes)
     // @TODO check if is fetching
     const validFilterStatus = queryFilterStatus.filter((item) => langSet.includes(item));
 
+    const itemsToRender = itemData.filter((item) => {
+      // @TODO a lot more computations can be lifted.
+      const itemLangs = langs.get(item.get('id'));
+
+      // data isn't ready yet, or there's no filter
+      if (!itemLangs || validFilterStatus.length === 0) {
+        return true;
+      }
+
+      return itemLangs.some((_, key) => validFilterStatus.includes(key));
+    });
+
     return (
       <div className={styles.root}>
         <Filters
@@ -98,12 +111,18 @@ class Main extends PureComponent { // routing object is safe (it changes)
         {
           !itemData.count() ? <Spinner /> :
           <ItemList
-            itemData={itemData}
-            filterStatus={validFilterStatus}
+            itemsToRender={itemsToRender}
             langs={langs}
             readmes={readmes}
           />
         }
+        <Stats
+          selectedLangs={validFilterStatus}
+          hnCount={stats.getIn([ 'rawCount', whatAmI ])}
+          ghCount={itemData.count()}
+          currentCount={itemsToRender.count()}
+          type={whatAmI}
+        />
       </div>
     );
   }

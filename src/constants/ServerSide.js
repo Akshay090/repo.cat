@@ -1,13 +1,9 @@
-export const HN_ITEMS_DATA = '@@HN_ITEMS_DATA';
+export const HN_RAW_COUNT = '@@server/HN_RAW_COUNT';
 
-export const POSSIBLE_REPO = '@@POSSIBLE_REPO';
-export const REPO_INFO = '@@REPO_INFO';
-export const REPO_LANG = '@@REPO_LANG';
-export const REPO_README = '@@REPO_README';
-
-export const REPO_LANGS = '@@REPO_LANGS';
-export const REPO_READMES = '@@REPO_READMES';
-
+export const POSSIBLE_REPO = '@@server/POSSIBLE_REPO';
+export const REPO_INFO = '@@server/REPO_INFO';
+export const REPO_LANG = '@@server/REPO_LANG';
+export const REPO_README = '@@server/REPO_README';
 
 export const dataTypes = [ 'top', 'new', 'show' ];
 

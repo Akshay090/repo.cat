@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { map } from 'react-immutable-proptypes';
 
 import SingleItem from './SingleItem';
@@ -11,45 +11,30 @@ const getItemLangs = (id, langs) => {
   return res.keySeq().toArray();
 };
 
-const ItemList = ({ itemData, filterStatus, langs, readmes }) => {
-  const itemsToRender = itemData.filter((item) => {
-    const currentLangs = langs.get(item.get('id'));
+const ItemList = ({ itemsToRender, langs, readmes }) => (
+  <div>
+    {itemsToRender && itemsToRender.valueSeq().map((item, idx) => {
+      const itemId = item.get('id');
 
-    if (!currentLangs ||
-        (currentLangs.count() === 0 && filterStatus.length === 0) ||
-        filterStatus.length === 0) {
-      return true;
-    }
-
-    return currentLangs.some((_, key) => filterStatus.includes(key));
-  });
-
-  return (
-    <div>
-      {itemsToRender && itemsToRender.valueSeq().map((item, idx) => {
-        const itemId = item.get('id');
-
-        return (
-          <SingleItem
-            key={idx}
-            title={item.get('title')}
-            url={item.get('url')}
-            langs={getItemLangs(itemId, langs)}
-            score={item.get('score')}
-            time={item.get('time')}
-            stars={item.getIn([ 'github', 'stargazers_count' ]) || -1}
-            fullName={item.getIn([ 'github', 'full_name' ]) || '...'}
-            gfmHtml={readmes.get(itemId) ? readmes.getIn([ itemId, 'gfmHtml' ]) || '' : ''}
-          />
-        );
-      })}
-    </div>
-  );
-};
+      return (
+        <SingleItem
+          key={idx}
+          title={item.get('title')}
+          url={item.get('url')}
+          langs={getItemLangs(itemId, langs)}
+          score={item.get('score')}
+          time={item.get('time')}
+          stars={item.getIn([ 'github', 'stargazers_count' ]) || -1}
+          fullName={item.getIn([ 'github', 'full_name' ]) || '...'}
+          gfmHtml={readmes.get(itemId) ? readmes.getIn([ itemId, 'gfmHtml' ]) || '' : ''}
+        />
+      );
+    })}
+  </div>
+);
 
 ItemList.propTypes = {
-  itemData: map.isRequired,
-  filterStatus: PropTypes.array.isRequired,
+  itemsToRender: map.isRequired,
   langs: map.isRequired,
   readmes: map.isRequired,
 };

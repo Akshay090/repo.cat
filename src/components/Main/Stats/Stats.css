@@ -1,0 +1,10 @@
+.root {
+  composes: main from '../../../styles/typography.css';
+  font-size: 0.8rem;
+  margin: 0.5rem 1.5rem;
+}
+
+.root > p {
+  margin: 0;
+  line-height: 1.5rem;
+}
