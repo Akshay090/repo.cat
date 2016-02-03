@@ -15,13 +15,13 @@ import topConnector from './topConnector';
 class Main extends PureComponent { // routing object is safe (it changes)
   static propTypes = {
     data: map.isRequired,
+    readmes: map.isRequired,
     stats: map.isRequired,
     langs: map.isRequired,
+    routing: PropTypes.object.isRequired,
 
     fetchData: PropTypes.func.isRequired,
-    routing: PropTypes.object.isRequired,
     type: PropTypes.string.isRequired,
-    readmes: map.isRequired,
   };
 
   static contextTypes = {

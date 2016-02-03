@@ -31,7 +31,7 @@ const Header = ({ query }) => (
           <Link
             to={{
               pathname: item.linkTo,
-              query,
+              query, // so that we keep the current filters when the route changes
             }}
             key={idx}
             className={commonStyles.resetA}
