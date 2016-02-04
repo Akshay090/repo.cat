@@ -28,6 +28,7 @@ const ItemList = ({ itemsToRender, langs, readmes }) => (
           time={item.get('time')}
           stars={starCount}
           fullName={item.getIn([ 'github', 'full_name' ]) || '...'}
+          description={item.getIn([ 'github', 'description' ])}
           gfmHtml={readmes.get(itemId) ? readmes.getIn([ itemId, 'gfmHtml' ]) || '' : ''}
         />
       );

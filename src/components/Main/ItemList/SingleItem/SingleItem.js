@@ -20,6 +20,7 @@ export default class SingleItem extends Component {
     time: PropTypes.number.isRequired,
     stars: PropTypes.number.isRequired,
     fullName: PropTypes.string.isRequired,
+    description: PropTypes.string,
     gfmHtml: PropTypes.string.isRequired,
   };
 
@@ -52,7 +53,7 @@ export default class SingleItem extends Component {
   };
 
   render() {
-    const { title, url, langs, score, time, stars, fullName, gfmHtml } = this.props;
+    const { title, url, langs, score, time, stars, fullName, gfmHtml, description } = this.props;
     const { isOpen } = this.state;
 
     return (
@@ -75,9 +76,14 @@ export default class SingleItem extends Component {
               </a>
               <span className={styles.fullName}>({fullName})</span>
             </h2>
+            <p className={styles.description}>
+              {description}
+            </p>
             <p className={styles.info}>
-              <span>★ {stars === -1 ? '...' : stars}</span>|
-              <span>{unix(time).fromNow()}</span>|
+              <span>★ {stars === -1 ? '...' : stars}</span>
+              |
+              <span>{unix(time).fromNow()}</span>
+              { langs && langs.length ? '|' : null }
               { langs ? <span>{langs.join(', ')}</span> : '...'}
             </p>
           </div>
