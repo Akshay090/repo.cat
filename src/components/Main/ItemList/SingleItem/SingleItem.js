@@ -7,6 +7,8 @@ import Markdown from '../../Markdown';
 
 import styles from './SingleItem.css';
 
+const noBubbleHandler = (evt) => { evt.stopPropagation(); };
+
 const MAX_MARKDOWN_HEIGHT = 3000;
 
 export default class SingleItem extends Component {
@@ -64,12 +66,18 @@ export default class SingleItem extends Component {
           </div>
           <div className={styles.content}>
             <h2 className={styles.title}>
-              <a href={url}>{title}</a>
+              <a
+                href={url}
+                target="_blank"
+                onTouchTap={noBubbleHandler}
+              >
+                {title}
+              </a>
               <span className={styles.fullName}>({fullName})</span>
             </h2>
             <p className={styles.info}>
-              <a href={url}><span>★ {stars === -1 ? '...' : stars}</span></a>|
-              <a href={url}><span>{unix(time).fromNow()}</span></a>|
+              <span>★ {stars === -1 ? '...' : stars}</span>|
+              <span>{unix(time).fromNow()}</span>|
               { langs ? <span>{langs.join(', ')}</span> : '...'}
             </p>
           </div>
