@@ -95,6 +95,7 @@
     "redux": "^3.0.5",
     "redux-logger": "^2.4.0",
     "redux-thunk": "^1.0.3",
+    "redux-worker-middleware": "^0.1.0",
     "rollbar": "^0.5.12"
   }
 }

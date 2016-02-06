@@ -13,10 +13,8 @@ import { Provider } from 'react-redux';
 
 import getRootRoute from './routes';
 import configStore from './store/configStore';
-import { setStoreInstance } from './actions';
 
 const store = configStore();
-setStoreInstance(store);
 
 if (__DEV__) {
   window.s = () => store.getState();

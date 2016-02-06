@@ -13,8 +13,6 @@
           -> remove it in the UI
 */
 
-import invariant from 'invariant';
-
 import {
   fetchHNItems,
   fetchHNItemById,
@@ -32,28 +30,6 @@ import {
   REPO_LANG,
   REPO_README,
 } from '../constants';
-
-let storeInstance = null;
-
-export const setStoreInstance = (store) => {
-  invariant(store.dispatch, `store.dispatch not received. got ${store}`);
-
-  storeInstance = store;
-};
-
-const GFMParserWorker = require('worker!../workers/GFMParserWorker');
-const parserWorker = new GFMParserWorker;
-
-parserWorker.onmessage = ({ data }) => {
-  const { id, gfmHtml } = data;
-  storeInstance.dispatch({
-    type: REPO_README,
-    payload: {
-      id,
-      gfmHtml,
-    },
-  });
-};
 
 // slugObj === { by, name }
 const fetchAndGenRepoInfoAction = async (type, id, slugObj) => {
@@ -86,8 +62,14 @@ const fetchReadmeInfo = async (id, slugObj) => {
   const data = await fetchGitHubRepoReadme(slugObj);
 
   return {
-    id,
-    content: data.notOk ? false : data.content,
+    type: REPO_README,
+    meta: {
+      WebWorker: true, // let the worker middleware do the job
+    },
+    payload: {
+      id,
+      content: data.notOk ? false : data.content,
+    },
   };
 };
 
@@ -127,6 +109,6 @@ export const loadAllForType = (type) => () => async (dispatch) => {
     }
 
     fetchAndGenRepoLangAction(type, id, rawHNData.github).then((data) => dispatch(data));
-    fetchReadmeInfo(id, rawHNData.github).then((data) => parserWorker.postMessage(data));
+    fetchReadmeInfo(id, rawHNData.github).then((data) => dispatch(data));
   })));
 };

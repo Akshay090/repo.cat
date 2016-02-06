@@ -4,12 +4,14 @@ import {
   logger,
   reduxRouter,
   thunk,
+  worker,
 } from '../middlewares';
 
 const rootReducer = combineReducers(reducers);
 
 const createStoreWithMiddleware = applyMiddleware(
   reduxRouter,
+  worker,
   thunk,
   logger,
 )(createStore);
