@@ -13,19 +13,18 @@ marked.setOptions({
   smartypants: false,
 });
 
-self.onmessage = ({ data }) => {
-  const { id, content } = data;
+self.onmessage = ({ data: action }) => {
+  const { content } = action.payload;
 
-  if (typeof content !== 'string') {
-    self.postMessage({
-      id,
-      gfmHtml: false,
-    });
-  } else {
-    const textContent = decode(content);
-    self.postMessage({
-      id,
-      gfmHtml: marked(textContent),
-    });
-  }
+  const gfmHtml = typeof content !== 'string' ?
+    false :
+    marked(decode(content)); // the expensive op
+
+  self.postMessage({
+    type: action.type,
+    payload: {
+      id: action.payload.id,
+      gfmHtml,
+    },
+  });
 };
