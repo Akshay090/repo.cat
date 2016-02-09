@@ -15,12 +15,14 @@ const initialDataState = iMap();
 
 const langsReducer = (state = initialDataState, action) => {
   switch (action.type) {
-    case REPO_LANG:
+    case REPO_LANG: {
       const { id, data } = action.payload;
-      return state.set(id, fromJS(data ? data : {}));
+      return state.set(id, fromJS(data || {}));
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 };
 

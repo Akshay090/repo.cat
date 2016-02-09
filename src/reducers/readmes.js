@@ -15,7 +15,7 @@ const initialDataState = iMap();
 
 const readmesReducer = (state = initialDataState, action) => {
   switch (action.type) {
-    case REPO_README:
+    case REPO_README: {
       const { id, gfmHtml } = action.payload;
       if (typeof gfmHtml !== 'string') {
         return state.set(id, false);
@@ -24,9 +24,11 @@ const readmesReducer = (state = initialDataState, action) => {
       return state.set(id, fromJS({
         gfmHtml,
       }));
+    }
 
-    default:
+    default: {
       return state;
+    }
   }
 };
 
