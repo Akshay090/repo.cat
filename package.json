@@ -50,6 +50,7 @@
     "express": "^4.13.4",
     "file-loader": "^0.8.5",
     "jsdom": "^8.0.0",
+    "json-loader": "^0.5.4",
     "keypress": "^0.2.1",
     "mocha": "^2.4.1",
     "nyc": "^5.6.0",
@@ -65,6 +66,7 @@
     "redbox-react": "^1.2.0",
     "rimraf": "^2.5.0",
     "style-loader": "^0.13.0",
+    "transform-loader": "^0.2.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
     "webpack-dev-middleware": "^1.5.0",
@@ -72,6 +74,7 @@
     "worker-loader": "^0.7.0"
   },
   "dependencies": {
+    "auth0-lock": "^8.2.3",
     "babel-polyfill": "^6.3.14",
     "classnames": "^2.2.3",
     "compression": "^1.6.1",

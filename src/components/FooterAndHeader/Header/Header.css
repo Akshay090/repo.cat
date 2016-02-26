@@ -55,3 +55,12 @@
   width: 20px;
   height: 20px;
 }
+
+.auth {
+  display: flex;
+  height: 100%;
+  min-width: 4rem;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+}
