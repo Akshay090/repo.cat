@@ -1,1 +1,1 @@
-export { routeReducer as default } from 'react-router-redux';
+export { routerReducer as default } from 'react-router-redux';

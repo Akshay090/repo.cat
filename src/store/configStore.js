@@ -2,7 +2,6 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import * as reducers from '../reducers';
 import {
   logger,
-  reduxRouter,
   thunk,
   worker,
 } from '../middlewares';
@@ -10,7 +9,6 @@ import {
 const rootReducer = combineReducers(reducers);
 
 const createStoreWithMiddleware = applyMiddleware(
-  reduxRouter,
   worker,
   thunk,
   logger,

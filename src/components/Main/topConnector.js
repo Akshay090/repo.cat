@@ -5,9 +5,12 @@ import { bindActionCreators } from 'redux';
 import * as actions from '../../actions';
 import { dataTypes } from '../../constants';
 
-const mapStateToProps = (storeState) => {
+const mapStateToProps = (storeState, ownProps) => {
   // states from the single store tree
-  return storeState;
+  return {
+    ...storeState,
+    routing: ownProps,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

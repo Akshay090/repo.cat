@@ -32,6 +32,8 @@ export const gitHubUrlParser = (urlStr) => {
       name: name.endsWith('.git') ? name.substring(0, name.length - 4) : name,
     };
   }
+
+  return false;
 };
 
 // the fetch methods _only_ throw when there's a network error.
