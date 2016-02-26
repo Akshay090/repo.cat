@@ -27,8 +27,8 @@
   },
   "homepage": "https://github.com/keyanzhang/repo.cat#readme",
   "engines": {
-    "node": "5.5.0",
-    "npm": "3.3.12"
+    "node": "5.7.0",
+    "npm": "3.7.3"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.3",
