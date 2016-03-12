@@ -10,7 +10,7 @@ const defineConstPlugin = new webpack.DefinePlugin({
 });
 
 module.exports = {
-  devtool: isDev ? 'cheap-module-eval-source-map' : 'source-map',
+  devtool: isDev ? '#cheap-module-eval-source-map' : 'source-map',
 
   entry: isDev ? [
     'babel-polyfill',
